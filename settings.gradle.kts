@@ -18,3 +18,4 @@ rootProject.name = "MovieArchiveKMP"
 include(":androidApp")
 include(":shared")
 include(":shared:data")
+include(":shared:core")

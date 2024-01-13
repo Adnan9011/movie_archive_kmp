@@ -24,6 +24,7 @@ androidx-test-ext-junit115 = "1.1.5"
 androidx-test-espresso-espresso-core = "3.5.1"
 androidx-appcompat-appcompat = "1.6.1"
 com-google-android-material-material = "1.11.0"
+napier = "2.7.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "org-jetbrains-kotlin-android" }
@@ -57,6 +58,7 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat-appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "com-google-android-material-material" }
 
+napier = { group = "io.github.aakira", name = "napier", version.ref = "napier" }
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }

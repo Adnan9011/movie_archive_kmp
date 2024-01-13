@@ -32,7 +32,6 @@ kotlin {
             }
 
             implementation(libs.kotlinx.serialization)
-            implementation(libs.kotlinx.collections.immutable)
 
             implementation(libs.koin.core)
 

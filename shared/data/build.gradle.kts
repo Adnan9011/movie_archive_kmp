@@ -44,6 +44,8 @@ kotlin {
             }
 
             implementation(libs.sqldelight.coroutines)
+
+            implementation(libs.napier)
         }
         commonTest.dependencies {
         }

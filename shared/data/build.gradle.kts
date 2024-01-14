@@ -6,14 +6,7 @@ plugins {
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
-    }
-
+    androidTarget()
     listOf(
         iosX64(),
         iosArm64(),
@@ -66,6 +59,17 @@ kotlin {
 android {
     namespace = "com.moviearchive.data"
     compileSdk = 34
+    defaultConfig {
+        minSdk = 24
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlin {
+        jvmToolchain(17)
+    }
 }
 
 sqldelight {

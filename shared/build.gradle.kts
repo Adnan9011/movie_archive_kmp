@@ -1,10 +1,10 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.compose)
 }
 
 kotlin {
+    androidTarget()
     listOf(
         iosX64(),
         iosArm64(),
@@ -17,15 +17,10 @@ kotlin {
     }
 
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.animation)
-                implementation(compose.material3)
-            }
+        commonMain.dependencies {
 
         }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }

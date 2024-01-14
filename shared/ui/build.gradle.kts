@@ -5,14 +5,7 @@ plugins {
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
-    }
-
+    androidTarget()
     listOf(
         iosX64(),
         iosArm64(),
@@ -25,10 +18,36 @@ kotlin {
     }
 
     sourceSets {
+        commonMain.dependencies {
+            compose.apply {
+                implementation(runtime)
+                implementation(foundation)
+                implementation(animation)
+                implementation(material3)
+            }
+        }
+        commonTest.dependencies { }
+        androidMain.dependencies {
+            compose.apply {
+                implementation(preview)
+                implementation(uiTooling)
+            }
+        }
     }
 }
 
 android {
     namespace = "com.moviearchive.ui"
     compileSdk = 34
+    defaultConfig {
+        minSdk = 24
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlin {
+        jvmToolchain(17)
+    }
 }

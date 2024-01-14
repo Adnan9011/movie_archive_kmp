@@ -1,8 +1,8 @@
 [versions]
-agp = "8.2.1"
+agp = "8.0.2"
 org-jetbrains-kotlin-android = "1.9.20"
 
-kotlinCompilerExtensionVersion = "1.5.4"
+compose = "1.5.10"
 compose-material3 = "1.1.2"
 activity-compose = "1.8.2"
 core-ktx = "1.12.0"
@@ -30,10 +30,10 @@ coroutine = "1.8.0-RC2"
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "org-jetbrains-kotlin-android" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "kotlinCompilerExtensionVersion" }
-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "kotlinCompilerExtensionVersion" }
-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "kotlinCompilerExtensionVersion" }
-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "kotlinCompilerExtensionVersion" }
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
 
 kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx-immutable-collection" }
@@ -66,10 +66,11 @@ coroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core",
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "org-jetbrains-kotlin-android" }
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "org-jetbrains-kotlin-android" }
 
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "org-jetbrains-kotlin-android" }
 
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.compose)
 }
 
 kotlin {
@@ -11,24 +12,32 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
+            baseName = "ui"
             isStatic = true
         }
     }
 
     sourceSets {
         commonMain.dependencies {
-
+            compose.apply {
+                implementation(runtime)
+                implementation(foundation)
+                implementation(animation)
+                implementation(material3)
+            }
         }
-
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+        commonTest.dependencies { }
+        androidMain.dependencies {
+            compose.apply {
+                implementation(preview)
+                implementation(uiTooling)
+            }
         }
     }
 }
 
 android {
-    namespace = "com.moviearchive.app"
+    namespace = "com.moviearchive.ui"
     compileSdk = 34
     defaultConfig {
         minSdk = 24

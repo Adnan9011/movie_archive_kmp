@@ -4,6 +4,7 @@ plugins {
 }
 
 kotlin {
+    androidTarget()
     listOf(
         iosX64(),
         iosArm64(),
@@ -34,13 +35,16 @@ kotlin {
 
 android {
     namespace = "com.moviearchive.di"
-    compileSdk = 34
+    compileSdk = libs.versions.app.compile.sdk.get().toInt()
+    defaultConfig {
+        minSdk = libs.versions.app.min.sdk.get().toInt()
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
-        jvmToolchain(17)
+        jvmToolchain(libs.versions.java.jdk.get().toInt())
     }
 }

@@ -55,7 +55,7 @@ import org.koin.compose.koinInject
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     viewModel: HomeViewModel = koinInject(),
     onShowDetail: (movieId: Int) -> Unit
 ) {

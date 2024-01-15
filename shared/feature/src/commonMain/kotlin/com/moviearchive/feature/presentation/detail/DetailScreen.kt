@@ -47,7 +47,7 @@ import org.koin.compose.koinInject
 
 @Composable
 fun DetailScreen(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     viewModel: DetailViewModel = koinInject(),
     movieId: Int,
     onBackClicked: () -> Unit

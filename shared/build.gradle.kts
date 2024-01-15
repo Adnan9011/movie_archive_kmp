@@ -29,9 +29,9 @@ kotlin {
 
 android {
     namespace = "com.moviearchive.app"
-    compileSdk = 34
+    compileSdk = libs.versions.app.compile.sdk.get().toInt()
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.app.min.sdk.get().toInt()
     }
 
     compileOptions {
@@ -39,6 +39,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
-        jvmToolchain(17)
+        jvmToolchain(libs.versions.java.jdk.get().toInt())
     }
 }

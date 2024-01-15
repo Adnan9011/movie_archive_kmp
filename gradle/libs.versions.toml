@@ -24,6 +24,13 @@ coroutine = "1.8.0-RC2"
 
 mvvm-compose = "0.16.1"
 
+voyager = "1.0.0"
+
+java-jdk = "17"
+app-compile-sdk = "34"
+app-min-sdk = "24"
+compose-android-compiler = "1.5.7"
+
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "org-jetbrains-kotlin-android" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
@@ -59,6 +66,13 @@ coroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core",
 
 mvvm-compose = { group = "dev.icerock.moko", name = "mvvm-compose", version.ref = "mvvm-compose" }
 mvvm-compose-flow = { group = "dev.icerock.moko", name = "mvvm-flow-compose", version.ref = "mvvm-compose" }
+
+voyager-navigator = { group = "cafe.adriel.voyager", name = "voyager-navigator", version.ref = "voyager" }
+voyager-screenmodel = { group = "cafe.adriel.voyager", name = "voyager-screenmodel", version.ref = "voyager" }
+voyager-bottom-sheet-navigator = { group = "cafe.adriel.voyager", name = "voyager-bottom-sheet-navigator", version.ref = "voyager" }
+voyager-tab-navigator = { group = "cafe.adriel.voyager", name = "voyager-tab-navigator", version.ref = "voyager" }
+voyager-transitions = { group = "cafe.adriel.voyager", name = "voyager-transitions", version.ref = "voyager" }
+voyager-koin = { group = "cafe.adriel.voyager", name = "voyager-koin", version.ref = "voyager" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

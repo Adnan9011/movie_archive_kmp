@@ -23,7 +23,6 @@ napier = "2.7.1"
 coroutine = "1.8.0-RC2"
 
 mvvm-compose = "0.16.1"
-kotlin = "1.9.22"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "org-jetbrains-kotlin-android" }
@@ -72,4 +71,3 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
-kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

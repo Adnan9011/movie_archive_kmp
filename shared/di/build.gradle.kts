@@ -16,6 +16,19 @@ kotlin {
     }
 
     sourceSets {
+        commonMain {
+            dependencies {
+                projects.shared.apply {
+                    implementation(data)
+                    implementation(domain)
+                    implementation(feature)
+                }
+
+                libs.koin.apply {
+                    implementation(core)
+                }
+            }
+        }
     }
 }
 

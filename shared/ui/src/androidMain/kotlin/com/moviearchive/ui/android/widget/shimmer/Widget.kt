@@ -1,8 +1,11 @@
-package com.moviearchive.ui.widget.shimmer
+package com.moviearchive.ui.android.widget.shimmer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.moviearchive.ui.widget.shimmer.ShimmerCircle
+import com.moviearchive.ui.widget.shimmer.ShimmerRectangle
+import com.moviearchive.ui.widget.shimmer.ShimmerSquare
 
 @Preview
 @Composable

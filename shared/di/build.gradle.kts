@@ -10,17 +10,30 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "core"
+            baseName = "di"
             isStatic = true
         }
     }
 
     sourceSets {
+        commonMain {
+            dependencies {
+                projects.shared.apply {
+                    implementation(data)
+                    implementation(domain)
+                    implementation(feature)
+                }
+
+                libs.koin.apply {
+                    implementation(core)
+                }
+            }
+        }
     }
 }
 
 android {
-    namespace = "com.moviearchive.core"
+    namespace = "com.moviearchive.di"
     compileSdk = 34
 
     compileOptions {

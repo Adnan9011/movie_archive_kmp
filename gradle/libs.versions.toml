@@ -24,12 +24,13 @@ coroutine = "1.8.0-RC2"
 
 mvvm-compose = "0.16.1"
 
-voyager = "1.0.0"
+precompose = "1.5.10"
 
 java-jdk = "17"
 app-compile-sdk = "34"
 app-min-sdk = "24"
 compose-android-compiler = "1.5.7"
+touchlab = "2.0.5"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "org-jetbrains-kotlin-android" }
@@ -48,6 +49,7 @@ ktor-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = 
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin-compose" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+touchlab = { group = "co.touchlab", name = "stately-common", version.ref = "touchlab" }
 
 sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-native = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
@@ -67,12 +69,9 @@ coroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core",
 mvvm-compose = { group = "dev.icerock.moko", name = "mvvm-compose", version.ref = "mvvm-compose" }
 mvvm-compose-flow = { group = "dev.icerock.moko", name = "mvvm-flow-compose", version.ref = "mvvm-compose" }
 
-voyager-navigator = { group = "cafe.adriel.voyager", name = "voyager-navigator", version.ref = "voyager" }
-voyager-screenmodel = { group = "cafe.adriel.voyager", name = "voyager-screenmodel", version.ref = "voyager" }
-voyager-bottom-sheet-navigator = { group = "cafe.adriel.voyager", name = "voyager-bottom-sheet-navigator", version.ref = "voyager" }
-voyager-tab-navigator = { group = "cafe.adriel.voyager", name = "voyager-tab-navigator", version.ref = "voyager" }
-voyager-transitions = { group = "cafe.adriel.voyager", name = "voyager-transitions", version.ref = "voyager" }
-voyager-koin = { group = "cafe.adriel.voyager", name = "voyager-koin", version.ref = "voyager" }
+precompose-core = { module = "moe.tlaster:precompose", version.ref = "precompose" }
+precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
+precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

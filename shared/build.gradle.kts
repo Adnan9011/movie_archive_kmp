@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.compose)
 }
 
 kotlin {
@@ -18,7 +19,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-
+            implementation(projects.shared.di)
+            implementation(projects.shared.core)
+            implementation(compose.foundation)
         }
 
         commonTest.dependencies {

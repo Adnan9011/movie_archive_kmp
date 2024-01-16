@@ -25,6 +25,7 @@ kotlin {
                 implementation(animation)
                 implementation(material3)
             }
+
         }
         commonTest.dependencies { }
         androidMain.dependencies {

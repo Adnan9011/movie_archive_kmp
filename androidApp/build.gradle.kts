@@ -29,10 +29,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(compose.runtime)
-                implementation(libs.voyager.navigator)
-                projects.shared.apply {
-                    implementation(navigation)
-                }
+                implementation(projects.shared)
             }
         }
 

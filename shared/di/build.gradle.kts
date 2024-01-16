@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.compose)
 }
 
 kotlin {
@@ -23,11 +24,27 @@ kotlin {
                     implementation(data)
                     implementation(domain)
                     implementation(feature)
+                    implementation(navigation)
+                    implementation(core)
                 }
 
                 libs.koin.apply {
                     implementation(core)
+                    implementation(compose)
                 }
+
+                libs.precompose.apply {
+                    implementation(core)
+                    implementation(viewmodel)
+                    implementation(koin)
+                }
+
+                implementation(compose.foundation)
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation(libs.koin.android)
             }
         }
     }

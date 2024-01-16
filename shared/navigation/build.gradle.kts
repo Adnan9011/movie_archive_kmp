@@ -26,9 +26,9 @@ kotlin {
                     implementation(feature)
                 }
 
-                libs.voyager.apply {
-                    implementation(navigator)
-                    implementation(screenmodel)
+                libs.precompose.apply {
+                    implementation(core)
+                    implementation(viewmodel)
                     implementation(koin)
                 }
 
@@ -39,6 +39,7 @@ kotlin {
                     implementation(runtime)
                     implementation(foundation)
                 }
+                implementation(libs.touchlab)
             }
         }
     }

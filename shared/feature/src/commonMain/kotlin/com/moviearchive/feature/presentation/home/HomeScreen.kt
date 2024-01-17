@@ -31,9 +31,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import coil3.compose.LocalPlatformContext
-import coil3.compose.rememberAsyncImagePainter
-import coil3.request.ImageRequest
 import com.moviearchive.core.Result.Failure
 import com.moviearchive.core.Result.Loading
 import com.moviearchive.core.Result.Success
@@ -50,6 +47,7 @@ import com.moviearchive.ui.theme.MovieItemRound
 import com.moviearchive.ui.theme.NormalPadding
 import com.moviearchive.ui.theme.SmallPadding
 import com.moviearchive.ui.widget.AppBarHome
+import com.moviearchive.ui.widget.AsyncImagePainter
 import kotlinx.collections.immutable.PersistentList
 import org.koin.compose.koinInject
 
@@ -156,10 +154,7 @@ fun TopBanner() {
                 .fillMaxWidth()
                 .height(HomeBannerHeight)
                 .clip(RoundedCornerShape(size = MovieItemRound)),
-            painter = rememberAsyncImagePainter(
-                model = ImageRequest.Builder(LocalPlatformContext.current).data(BANNER_IMAGE_URL)
-                    .build()
-            ),
+            painter = AsyncImagePainter(BANNER_IMAGE_URL),
             contentScale = ContentScale.Crop,
             contentDescription = null
         )

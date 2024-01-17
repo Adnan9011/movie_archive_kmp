@@ -39,6 +39,15 @@ kotlin {
                     implementation(koin)
                 }
 
+                libs.coil.apply {
+                    implementation(core)
+                    implementation(compose)
+                    implementation(network)
+                }
+                libs.ktor.apply {
+                    implementation(core)
+                }
+
                 implementation(compose.foundation)
             }
         }

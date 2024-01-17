@@ -1,15 +1,16 @@
 package com.moviearchive.data.di
 
 import com.moviearchive.DatabaseSource
+import com.moviearchive.core.platform.AppContext
 import com.moviearchive.data.source.db.DriverFactory
-import org.koin.android.ext.koin.androidContext
+import org.koin.core.module.Module
 import org.koin.dsl.module
 
-val androidDataModule = module {
+actual fun platformModule(appContext: AppContext): Module = module {
     single {
 
         val driverFactory = DriverFactory(
-            androidContext()
+            appContext
         )
         val sqlDriver = driverFactory.createDriver()
         DatabaseSource(sqlDriver)

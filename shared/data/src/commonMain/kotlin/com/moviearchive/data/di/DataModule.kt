@@ -1,5 +1,6 @@
 package com.moviearchive.data.di
 
+import com.moviearchive.core.platform.AppContext
 import com.moviearchive.data.repository.MovieRepository
 import com.moviearchive.data.repository.MovieRepositoryImpl
 import com.moviearchive.data.source.api.api.ApiService
@@ -22,7 +23,10 @@ import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.json.Json
+import org.koin.core.module.Module
 import org.koin.dsl.module
+
+expect fun platformModule(appContext: AppContext): Module
 
 val dataModule = module {
     single<MovieRepository> { MovieRepositoryImpl(api = get(), dao = get(), dataStore = get()) }
@@ -51,4 +55,5 @@ val dataModule = module {
 
     single { Dispatchers.Default }
     single<ApiService> { ApiServiceImpl(httpClient = get()) }
+
 }

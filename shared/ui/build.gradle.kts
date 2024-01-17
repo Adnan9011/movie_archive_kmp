@@ -25,6 +25,7 @@ kotlin {
                 implementation(animation)
                 implementation(material3)
             }
+
         }
         commonTest.dependencies { }
         androidMain.dependencies {
@@ -38,9 +39,9 @@ kotlin {
 
 android {
     namespace = "com.moviearchive.ui"
-    compileSdk = 34
+    compileSdk = libs.versions.app.compile.sdk.get().toInt()
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.app.min.sdk.get().toInt()
     }
 
     compileOptions {
@@ -48,6 +49,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
-        jvmToolchain(17)
+        jvmToolchain(libs.versions.java.jdk.get().toInt())
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.android.compiler.get()
     }
 }

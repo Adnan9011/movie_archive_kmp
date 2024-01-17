@@ -12,7 +12,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "di"
+            baseName = "navigation"
             isStatic = true
         }
     }
@@ -24,13 +24,6 @@ kotlin {
                     implementation(data)
                     implementation(domain)
                     implementation(feature)
-                    implementation(navigation)
-                    implementation(core)
-                }
-
-                libs.koin.apply {
-                    implementation(core)
-                    implementation(compose)
                 }
 
                 libs.precompose.apply {
@@ -39,19 +32,21 @@ kotlin {
                     implementation(koin)
                 }
 
-                implementation(compose.foundation)
-            }
-        }
-        androidMain {
-            dependencies {
-                implementation(libs.koin.android)
+                libs.koin.apply {
+                    implementation(core)
+                }
+                compose.apply {
+                    implementation(runtime)
+                    implementation(foundation)
+                }
+                implementation(libs.touchlab)
             }
         }
     }
 }
 
 android {
-    namespace = "com.moviearchive.di"
+    namespace = "com.moviearchive.navigation"
     compileSdk = libs.versions.app.compile.sdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.app.min.sdk.get().toInt()

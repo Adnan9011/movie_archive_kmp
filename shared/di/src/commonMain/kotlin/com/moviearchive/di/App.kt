@@ -1,6 +1,10 @@
 package com.moviearchive.di
 
 import androidx.compose.runtime.Composable
+import coil3.ImageLoader
+import coil3.annotation.ExperimentalCoilApi
+import coil3.compose.setSingletonImageLoaderFactory
+import coil3.fetch.NetworkFetcher
 import com.moviearchive.core.platform.AppContext
 import com.moviearchive.feature.presentation.detail.DetailScreen
 import com.moviearchive.feature.presentation.home.HomeScreen
@@ -13,6 +17,7 @@ import moe.tlaster.precompose.navigation.path
 import moe.tlaster.precompose.navigation.rememberNavigator
 import org.koin.compose.KoinApplication
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun App(appContext: AppContext) {
     KoinApplication(
@@ -20,6 +25,14 @@ fun App(appContext: AppContext) {
             modules(ProvideModules.getModules(appContext))
         }
     ) {
+        setSingletonImageLoaderFactory { context ->
+            ImageLoader.Builder(context)
+                .components {
+                    add(NetworkFetcher.Factory())
+                }
+                .build()
+        }
+
         PreComposeApp {
             val navigator = rememberNavigator()
             val navigationActions = NavigationActions(navigator)

@@ -25,7 +25,11 @@ kotlin {
                 implementation(animation)
                 implementation(material3)
             }
-
+            libs.coil.apply {
+                implementation(core)
+                implementation(compose)
+                implementation(network)
+            }
         }
         commonTest.dependencies { }
         androidMain.dependencies {

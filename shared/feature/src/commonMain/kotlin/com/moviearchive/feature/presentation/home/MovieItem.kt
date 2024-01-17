@@ -27,9 +27,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
-import coil3.compose.LocalPlatformContext
-import coil3.compose.rememberAsyncImagePainter
-import coil3.request.ImageRequest
 import com.moviearchive.feature.model.MovieUiModel
 import com.moviearchive.ui.theme.DetailIcon
 import com.moviearchive.ui.theme.GradientBlack
@@ -44,6 +41,7 @@ import com.moviearchive.ui.theme.MovieItemWidth
 import com.moviearchive.ui.theme.NormalPadding
 import com.moviearchive.ui.theme.SmallEvelation
 import com.moviearchive.ui.theme.SmallPadding
+import com.moviearchive.ui.widget.AsyncImagePainter
 import com.moviearchive.ui.widget.VerticalGradiant
 
 @Composable
@@ -81,11 +79,7 @@ fun MovieItem(
                 Image(
                     modifier = Modifier
                         .size(width = MovieItemWidth, height = MovieItemHeight),
-                    painter = rememberAsyncImagePainter(
-                        model = ImageRequest.Builder(LocalPlatformContext.current)
-                            .data(movie.imageUrl)
-                            .build()
-                    ),
+                    painter = AsyncImagePainter(movie.imageUrl),
                     contentScale = ContentScale.Crop,
                     contentDescription = null
                 )

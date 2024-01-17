@@ -31,7 +31,13 @@ kotlin {
                     implementation(animation)
                     implementation(material3)
                 }
-                implementation(libs.compose.coil)
+                libs.coil.apply {
+                    implementation(core)
+                    implementation(compose)
+                }
+                libs.ktor.apply {
+                    implementation(core)
+                }
                 implementation(libs.coroutine)
                 libs.koin.apply {
                     implementation(core)

@@ -11,7 +11,26 @@ development and maintenance.
 
 https://github.com/Adnan9011/movie_archive_kmp/assets/7091803/d91b9e97-26c3-45b3-8864-025334c5628c
 
+## Give a Star!
+
+If you find this project helpful for learning or starting your own solution, we would greatly
+appreciate it if you could give it a star. Thank you!
+
 ## Features
+
+| Feature                       | Status           |
+|-------------------------------|------------------|
+| MultiModule                   | ✔️ Implemented   |
+| Implement Remote and Database | ✔️ Implemented   |
+| Home                          | ✔️ Implemented   |
+| Detail                        | ✔️ Implemented   |
+| Implement IMDB api            | ⚠️ Working on it |
+| Refactor Home                 | ⚠️ Working on it |
+| Refactor Detail               | ⚠️ Working on it |
+| Search Movie                  | ⚠️ Working on it |
+| Unit Test                     | ⚠️ Working on it |
+
+## Tech
 
 ### Compose UI:
 

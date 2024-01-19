@@ -2,9 +2,12 @@ package com.moviearchive.data.repository
 
 import com.moviearchive.core.Error
 import com.moviearchive.core.Result
+import com.moviearchive.core.map
+import com.moviearchive.data.model.CelebritiesDataModel
 import com.moviearchive.data.model.MovieDataModel
+import com.moviearchive.data.model.PagingDataModel
+import com.moviearchive.data.model.WeekTopDataModel
 import com.moviearchive.data.model.toData
-import com.moviearchive.data.model.toDatabase
 import com.moviearchive.data.source.api.api.ApiService
 import com.moviearchive.data.source.datastore.DataStoreSource
 import com.moviearchive.data.source.db.dao.MovieDao
@@ -17,52 +20,33 @@ class MovieRepositoryImpl(
     val dao: MovieDao,
     val dataStore: DataStoreSource
 ) : MovieRepository {
-    override suspend fun getFromApi() {
-        api.getMovies().collect { result ->
-            if (result is Result.Success)
-                dao.insertAll(result.value.map { it.toData().toDatabase() })
+    override fun get(id: String): Flow<Result<MovieDataModel, Error>> =
+        api.movie(id).map { result ->
+            result.map {
+                it.data[0].toData()
+            }
+        }.catch { throwable ->
+            Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
         }
-    }
 
-    override fun getAll(): Flow<Result<List<MovieDataModel>, Error>> {
-        return dao.getAll().map { list ->
-            list.map { it.toData() }
+    override fun search(title: String): Flow<Result<List<MovieDataModel>, Error>> =
+        api.search(title).map { result ->
+            result.map { it.data.map { it.toData() } }
+        }.catch { throwable ->
+            Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
         }
-            .map { Result.Success(value = it) }
-            .catch { throwable ->
-                Result.Failure(Error(throwable = throwable))
-            }
-    }
 
-    override fun get(id: Int): Flow<Result<MovieDataModel, Error>> =
-        dao.getMovie(id)
-            .map { it.toData() }
-            .map { Result.Success(value = it) }
-            .catch { throwable ->
-                Result.Failure(Error(throwable = throwable))
-            }
+    override fun weekTopTen(): Flow<Result<List<WeekTopDataModel>, Error>> =
+        api.weekTopTen().map { result ->
+            result.map { it.data.map { it.toData() } }
+        }.catch { throwable ->
+            Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
+        }
 
-    override fun getAllLiked(): Flow<Result<List<MovieDataModel>, Error>> =
-        dao.getAllLiked()
-            .map { list ->
-                list.map { it.toData() }
-            }.map { Result.Success(value = it) }
-            .catch { throwable ->
-                Result.Failure(Error(throwable = throwable))
-            }
-
-    override suspend fun update(movie: MovieDataModel) {
-        dao.update(movie.toDatabase())
-    }
-
-    override suspend fun insertAll(movies: List<MovieDataModel>) =
-        dao.insertAll(
-            movies.map { model ->
-                model.toDatabase()
-            }
-        )
-
-    override suspend fun deleteAll() {
-        dao.deleteAll()
-    }
+    override fun popularCelebrities(): Flow<Result<PagingDataModel<CelebritiesDataModel>, Error>> =
+        api.popularCelebrities().map { result ->
+            result.map { it.data.toData() }
+        }.catch { throwable ->
+            Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
+        }
 }

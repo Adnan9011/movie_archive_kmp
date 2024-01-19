@@ -5,11 +5,13 @@ import com.moviearchive.data.repository.MovieRepository
 import com.moviearchive.data.repository.MovieRepositoryImpl
 import com.moviearchive.data.source.api.api.ApiService
 import com.moviearchive.data.source.api.api.ApiServiceImpl
-import com.moviearchive.data.source.api.util.CustomHttpLogger
+import com.moviearchive.data.source.api.util.HEADER.HOST
+import com.moviearchive.data.source.api.util.HEADER.HOST_URL
+import com.moviearchive.data.source.api.util.HEADER.KEY
+import com.moviearchive.data.source.api.util.HEADER.KEY_TOKEN
+import com.moviearchive.data.source.api.util.KtorLogger
 import com.moviearchive.data.source.api.util.Rout
 import com.moviearchive.data.source.datastore.DataStoreSource
-import com.moviearchive.data.source.db.dao.CommentDao
-import com.moviearchive.data.source.db.dao.CommentDaoImpl
 import com.moviearchive.data.source.db.dao.MovieDao
 import com.moviearchive.data.source.db.dao.MovieDaoImpl
 import io.ktor.client.HttpClient
@@ -22,6 +24,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.serialization.json.Json
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -36,12 +39,14 @@ val dataModule = module {
     single {
         HttpClient() {
             install(Logging) {
-                logger = CustomHttpLogger()
+                logger = KtorLogger()
                 level = LogLevel.ALL
             }
             install(DefaultRequest) {
                 url(Rout.BASE_URL)
                 header(HttpHeaders.ContentType, ContentType.Application.Json)
+                header(KEY, KEY_TOKEN)
+                header(HOST, HOST_URL)
             }
             install(ContentNegotiation) {
                 json(Json {
@@ -51,9 +56,7 @@ val dataModule = module {
         }
     }
     single<MovieDao> { MovieDaoImpl(db = get()) }
-    single<CommentDao> { CommentDaoImpl(db = get()) }
 
-    single { Dispatchers.Default }
+    single { Dispatchers.IO }
     single<ApiService> { ApiServiceImpl(httpClient = get()) }
-
 }

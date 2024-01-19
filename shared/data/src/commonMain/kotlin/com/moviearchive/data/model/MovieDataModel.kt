@@ -1,43 +1,19 @@
 package com.moviearchive.data.model
 
 import com.moviearchive.data.source.api.model.MovieApiModel
-import com.moviearchive.sqldelight.MovieTable
 
 data class MovieDataModel(
-    val id: Int,
+    val id: String,
     val title: String,
-    val imageUrl: String,
-    val numComments: Int,
-    val numLikes: Int,
-    val isLiked: Boolean
+    val image: String,
+    val year: Int,
+    val stars: String
 )
 
 internal fun MovieApiModel.toData() = MovieDataModel(
     id = id,
     title = title,
-    imageUrl = imageUrl,
-    numComments = numComments,
-    numLikes = numLikes,
-    isLiked = isLiked
-)
-
-internal fun MovieTable.toData() = MovieDataModel(
-    id = id.toInt(),
-    title = title,
-    imageUrl = imageUrl,
-    numComments = numComments.toInt(),
-    numLikes = numLikes.toInt(),
-    isLiked = when {
-        (isLiked > 0) -> true
-        else -> false
-    }
-)
-
-internal fun MovieDataModel.toDatabase() = MovieTable(
-    id = id.toLong(),
-    title = title,
-    imageUrl = imageUrl,
-    numComments = numComments.toLong(),
-    numLikes = numLikes.toLong(),
-    isLiked = if (isLiked) 1 else 0
+    image = imageUrl,
+    year = year,
+    stars = stars
 )

@@ -2,16 +2,15 @@ package com.moviearchive.data.repository
 
 import com.moviearchive.core.Error
 import com.moviearchive.core.Result
+import com.moviearchive.data.model.CelebritiesDataModel
 import com.moviearchive.data.model.MovieDataModel
+import com.moviearchive.data.model.PagingDataModel
+import com.moviearchive.data.model.WeekTopDataModel
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
-    suspend fun getFromApi()
-    fun getAll(): Flow<Result<List<MovieDataModel>, Error>>
-    fun get(id: Int): Flow<Result<MovieDataModel, Error>>
-    fun getAllLiked(): Flow<Result<List<MovieDataModel>, Error>>
-
-    suspend fun update(movie: MovieDataModel)
-    suspend fun insertAll(movies: List<MovieDataModel>)
-    suspend fun deleteAll()
+    fun get(id: String): Flow<Result<MovieDataModel, Error>>
+    fun search(title: String): Flow<Result<List<MovieDataModel>, Error>>
+    fun weekTopTen(): Flow<Result<List<WeekTopDataModel>, Error>>
+    fun popularCelebrities(): Flow<Result<PagingDataModel<CelebritiesDataModel>, Error>>
 }

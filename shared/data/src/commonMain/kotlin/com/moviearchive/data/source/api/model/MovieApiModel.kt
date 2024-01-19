@@ -5,10 +5,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MovieApiModel(
-    val id: Int,
-    val title: String,
-    @SerialName("image_url") val imageUrl: String,
-    @SerialName("num_comments") val numComments: Int,
-    @SerialName("num_likes") val numLikes: Int,
-    @SerialName("is_liked") val isLiked: Boolean
+    @SerialName("id") val id: String,
+    @SerialName("title") val title: String,
+    @SerialName("image") val imageUrl: String,
+    @SerialName("year") val year: Int,
+    @SerialName("stars") val stars: String
 )

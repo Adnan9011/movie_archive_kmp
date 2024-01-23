@@ -6,8 +6,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ResponsePagingApiModel<T>(
-    @SerialName("status") val status: Boolean,
-    @SerialName("message") val message: MessageStatus,
-    @SerialName("data") val data: T
+    @SerialName("status") val status: Boolean = false,
+    @SerialName("message") val message: MessageStatus = MessageStatus.Failure,
+    @SerialName("messages") val messages: String = "",
+    @SerialName("data") val data: T? = null
 )
 

@@ -9,5 +9,5 @@ data class WeekTopApiModel(
     @SerialName("titleText") val title: TitleApiModel,
     @SerialName("primaryImage") val image: ImageApiModel,
     @SerialName("ratingsSummary") val rate: RateApiModel,
-    @SerialName("titleRuntime") val length: LengthApiModel
+    @SerialName("titleRuntime") val length: LengthApiModel?
 )

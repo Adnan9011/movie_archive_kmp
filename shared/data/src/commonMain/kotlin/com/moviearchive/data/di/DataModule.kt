@@ -14,6 +14,8 @@ import com.moviearchive.data.source.api.util.Rout
 import com.moviearchive.data.source.datastore.DataStoreSource
 import com.moviearchive.data.source.db.dao.MovieDao
 import com.moviearchive.data.source.db.dao.MovieDaoImpl
+import io.github.aakira.napier.DebugAntilog
+import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -25,12 +27,14 @@ import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
 expect fun platformModule(appContext: AppContext): Module
 
+@OptIn(ExperimentalSerializationApi::class)
 val dataModule = module {
     single<MovieRepository> { MovieRepositoryImpl(api = get(), dao = get(), dataStore = get()) }
 
@@ -50,10 +54,12 @@ val dataModule = module {
             }
             install(ContentNegotiation) {
                 json(Json {
+                    encodeDefaults = false
+                    explicitNulls = true
                     ignoreUnknownKeys = true
                 })
             }
-        }
+        }.also { Napier.base(DebugAntilog()) }
     }
     single<MovieDao> { MovieDaoImpl(db = get()) }
 

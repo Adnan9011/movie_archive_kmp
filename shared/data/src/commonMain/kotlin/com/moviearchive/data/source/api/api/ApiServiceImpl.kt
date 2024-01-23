@@ -8,6 +8,7 @@ import com.moviearchive.data.source.api.model.PagingApiModel
 import com.moviearchive.data.source.api.model.ResponseApiModel
 import com.moviearchive.data.source.api.model.ResponsePagingApiModel
 import com.moviearchive.data.source.api.model.WeekTopApiModel
+import com.moviearchive.data.source.api.util.MessageStatus
 import com.moviearchive.data.source.api.util.PARAMETER
 import com.moviearchive.data.source.api.util.Rout.POPULAR_CELEBRITIES
 import com.moviearchive.data.source.api.util.Rout.SEARCH
@@ -22,13 +23,18 @@ class ApiServiceImpl(val httpClient: HttpClient) : ApiService {
     override fun movie(id: String): Flow<Result<ResponseApiModel<MovieApiModel>, Error>> = flow {
         emit(Result.Loading)
         try {
-            emit(
-                Result.Success(
-                    httpClient.get(SEARCH) {
-                        url { parameters.append(PARAMETER.QUERY, id) }
-                    }.body()
-                )
-            )
+            val responseBody = httpClient.get(SEARCH) {
+                url { parameters.append(PARAMETER.QUERY, id) }
+            }.body<ResponseApiModel<MovieApiModel>>()
+            when (responseBody.message) {
+                MessageStatus.Success -> {
+                    emit(Result.Success(responseBody))
+                }
+
+                MessageStatus.Failure -> {
+                    emit(Result.Failure(Error(message = responseBody.messages)))
+                }
+            }
         } catch (exception: Exception) {
             exception.printStackTrace()
             emit(
@@ -46,34 +52,45 @@ class ApiServiceImpl(val httpClient: HttpClient) : ApiService {
         flow {
             emit(Result.Loading)
             try {
-                emit(
-                    Result.Success(
-                        httpClient.get(SEARCH) {
-                            url { parameters.append(PARAMETER.QUERY, title) }
-                        }.body()
-                    )
-                )
+                val responseBody = httpClient.get(SEARCH) {
+                    url { parameters.append(PARAMETER.QUERY, title) }
+                }.body<ResponseApiModel<MovieApiModel>>()
+                when (responseBody.message) {
+                    MessageStatus.Success -> {
+                        emit(Result.Success(responseBody))
+                    }
+
+                    MessageStatus.Failure -> {
+                        emit(Result.Failure(Error(message = responseBody.messages)))
+                    }
+                }
             } catch (exception: Exception) {
-            exception.printStackTrace()
-            emit(
-                Result.Failure(
-                    Error(
-                        message = exception.message ?: "",
-                        throwable = exception
+                exception.printStackTrace()
+                emit(
+                    Result.Failure(
+                        Error(
+                            message = exception.message ?: "",
+                            throwable = exception
+                        )
                     )
                 )
-            )
+            }
         }
-    }
 
     override fun weekTopTen(): Flow<Result<ResponseApiModel<WeekTopApiModel>, Error>> = flow {
         emit(Result.Loading)
         try {
-            emit(
-                Result.Success(
-                    httpClient.get(WEEK_TOP_TEN).body()
-                )
-            )
+            val responseBody =
+                httpClient.get(WEEK_TOP_TEN).body<ResponseApiModel<WeekTopApiModel>>()
+            when (responseBody.message) {
+                MessageStatus.Success -> {
+                    emit(Result.Success(responseBody))
+                }
+
+                MessageStatus.Failure -> {
+                    emit(Result.Failure(Error(message = responseBody.messages)))
+                }
+            }
         } catch (exception: Exception) {
             exception.printStackTrace()
             emit(
@@ -91,11 +108,17 @@ class ApiServiceImpl(val httpClient: HttpClient) : ApiService {
         flow {
             emit(Result.Loading)
             try {
-                emit(
-                    Result.Success(
-                        httpClient.get(POPULAR_CELEBRITIES).body()
-                    )
-                )
+                val responseBody = httpClient.get(POPULAR_CELEBRITIES)
+                    .body<ResponsePagingApiModel<PagingApiModel<CelebritiesApiModel>>>()
+                when (responseBody.message) {
+                    MessageStatus.Success -> {
+                        emit(Result.Success(responseBody))
+                    }
+
+                    MessageStatus.Failure -> {
+                        emit(Result.Failure(Error(message = responseBody.messages)))
+                    }
+                }
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 emit(

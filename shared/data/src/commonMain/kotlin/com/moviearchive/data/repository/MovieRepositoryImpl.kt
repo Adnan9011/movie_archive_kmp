@@ -45,7 +45,7 @@ class MovieRepositoryImpl(
 
     override fun popularCelebrities(): Flow<Result<PagingDataModel<CelebritiesDataModel>, Error>> =
         api.popularCelebrities().map { result ->
-            result.map { it.data.toData() }
+            result.map { it.data!!.toData() }
         }.catch { throwable ->
             Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
         }

@@ -7,6 +7,6 @@ private const val TAG = "Ktor"
 
 class KtorLogger() : Logger {
     override fun log(message: String) {
-        Napier.d(tag = TAG) { message }
+        Napier.d(message, tag = TAG)
     }
 }

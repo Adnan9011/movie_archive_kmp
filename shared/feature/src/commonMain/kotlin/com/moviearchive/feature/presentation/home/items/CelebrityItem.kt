@@ -1,23 +1,16 @@
-package com.moviearchive.feature.presentation.home
+package com.moviearchive.feature.presentation.home.items
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.MailOutline
-import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,13 +20,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
-import com.moviearchive.feature.model.MovieUiModel
-import com.moviearchive.ui.theme.DetailIcon
+import com.moviearchive.feature.model.CelebritiesUiModel
 import com.moviearchive.ui.theme.GradientBlack
 import com.moviearchive.ui.theme.GradientDarkGray
 import com.moviearchive.ui.theme.GradientWhite
-import com.moviearchive.ui.theme.HighPadding
-import com.moviearchive.ui.theme.MovieDetailItemTextStyle
 import com.moviearchive.ui.theme.MovieItemHeight
 import com.moviearchive.ui.theme.MovieItemRound
 import com.moviearchive.ui.theme.MovieItemTitleStyle
@@ -45,9 +35,9 @@ import com.moviearchive.ui.widget.AsyncImagePainter
 import com.moviearchive.ui.widget.VerticalGradiant
 
 @Composable
-fun MovieItem(
-    movie: MovieUiModel,
-    onShowDetail: (movieId: Int) -> Unit
+fun CelebrityItem(
+    celebrity: CelebritiesUiModel,
+    onShowCelebrity: (celebrityId: String) -> Unit
 ) {
     Surface(
         modifier = Modifier
@@ -61,25 +51,17 @@ fun MovieItem(
         Column(
             modifier = Modifier
                 .wrapContentSize()
-                .clickable { onShowDetail(movie.id) }
+                .clickable { onShowCelebrity(celebrity.id) }
         ) {
             Box(
                 modifier = Modifier
                     .size(width = MovieItemWidth, height = MovieItemHeight)
             ) {
-                Icon(
-                    if (movie.isLiked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                    tint = Color.Red,
-                    modifier = Modifier
-                        .padding(NormalPadding)
-                        .align(Alignment.TopStart),
-                    contentDescription = null
-                )
 
                 Image(
                     modifier = Modifier
                         .size(width = MovieItemWidth, height = MovieItemHeight),
-                    painter = AsyncImagePainter(movie.imageUrl),
+                    painter = AsyncImagePainter(celebrity.image),
                     contentScale = ContentScale.Crop,
                     contentDescription = null
                 )
@@ -94,7 +76,7 @@ fun MovieItem(
                     )
                 ) {
                     Text(
-                        text = movie.title,
+                        text = celebrity.name,
                         style = MovieItemTitleStyle,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -108,43 +90,6 @@ fun MovieItem(
                         maxLines = 1
                     )
                 }
-            }
-
-            Row {
-                Icon(
-                    modifier = Modifier
-                        .padding(start = NormalPadding, top = SmallPadding)
-                        .size(DetailIcon),
-                    imageVector = Icons.Filled.MailOutline,
-                    tint = Color.Blue,
-                    contentDescription = ""
-                )
-                Text(
-                    text = movie.numComments.toString(),
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1,
-                    style = MovieDetailItemTextStyle,
-                    color = Color.Blue,
-                    modifier = Modifier
-                        .padding(start = NormalPadding, top = SmallPadding)
-                )
-                Icon(
-                    imageVector = Icons.Outlined.Favorite,
-                    contentDescription = "",
-                    tint = Color.Red,
-                    modifier = Modifier
-                        .padding(start = HighPadding, top = SmallPadding, bottom = SmallPadding)
-                        .size(DetailIcon)
-                )
-                Text(
-                    text = movie.numLikes.toString(),
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1,
-                    style = MovieDetailItemTextStyle,
-                    color = Color.Red,
-                    modifier = Modifier
-                        .padding(start = NormalPadding, top = SmallPadding, bottom = SmallPadding)
-                )
             }
         }
     }

@@ -46,6 +46,9 @@ fun App(appContext: AppContext) {
                     HomeScreen(
                         onShowDetail = { movieId ->
                             navigationActions.navigateToDetail(movieId)
+                        },
+                        onShowCelebrity = { celebrityId ->
+                            //Todo: Create Celebrity Screen
                         }
                     )
                 }

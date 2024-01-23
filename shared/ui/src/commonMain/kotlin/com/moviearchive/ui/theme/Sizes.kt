@@ -15,8 +15,8 @@ val HighEvelation = 8.dp
 
 val HomeBannerHeight = 200.dp
 
-val MovieItemWidth = 200.dp
-val MovieItemHeight = 300.dp
+val MovieItemWidth = 140.dp
+val MovieItemHeight = 210.dp
 
 val EmptyMovieSize = 60.dp
 

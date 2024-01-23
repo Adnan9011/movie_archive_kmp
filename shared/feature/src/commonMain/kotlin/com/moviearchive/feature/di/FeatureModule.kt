@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 val featureModule = module {
     viewModelDefinition { HomeViewModel(get(), get()) }
-    viewModelDefinition { DetailViewModel(get(), get()) }
+    viewModelDefinition { DetailViewModel(get()) }
 }

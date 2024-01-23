@@ -12,9 +12,10 @@ import kotlinx.coroutines.flow.map
 
 class GetMovieUseCase internal constructor(
     private val repository: MovieRepository
-) : UseCase<Int, Flow<Result<MovieDomainModel, Error>>> {
-    override suspend fun invoke(input: Int): Flow<Result<MovieDomainModel, Error>> =
-        repository.get(input).map {
-            it.map { it.toDomain() }
+) : UseCase<String, Flow<Result<MovieDomainModel, Error>>> {
+    override suspend fun invoke(id: String): Flow<Result<MovieDomainModel, Error>> {
+        return repository.get(id).map { result ->
+            result.map { it.toDomain() }
         }
+    }
 }

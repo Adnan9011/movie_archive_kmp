@@ -24,7 +24,7 @@ class NavigationActions(private val navController: Navigator) {
         navController.navigate(HOME_SCREEN)
     }
 
-    fun navigateToDetail(movieId: Int) {
+    fun navigateToDetail(movieId: String) {
         navController.navigate(
             DETAIL_SCREEN +
                 "/${movieId}"

@@ -1,6 +1,8 @@
 package com.moviearchive.feature.model
 
 import com.moviearchive.domain.model.MovieDomainModel
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 
 data class MovieUiModel(
     val id: String,
@@ -9,7 +11,11 @@ data class MovieUiModel(
     val year: Int,
     private val stars: String
 ) {
-    fun getStars(): List<String> = stars.split(",").map { it.trim() }
+    fun getStars(): PersistentList<String> =
+        stars
+            .split(",")
+            .map { it.trim() }
+            .toPersistentList()
 }
 
 fun MovieDomainModel.toUi() = MovieUiModel(

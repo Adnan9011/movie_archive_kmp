@@ -23,6 +23,16 @@ val MovieItemTitleStyle =
         fontWeight = FontWeight.Bold
     )
 
+val MovieDetailTitleStyle =
+    TextStyle(
+        fontSize = 14.sp,
+        color = Color.Black,
+        fontFamily = FontFamily.Serif,
+        fontWeight = FontWeight.Bold,
+        textAlign = TextAlign.Justify,
+        lineHeight = 20.sp
+    )
+
 val MovieDetailTextStyle =
     TextStyle(
         fontSize = 12.sp,

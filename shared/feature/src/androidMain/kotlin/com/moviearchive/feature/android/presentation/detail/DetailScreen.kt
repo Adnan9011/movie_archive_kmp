@@ -8,7 +8,7 @@ import com.moviearchive.feature.presentation.detail.DetailScreen
 @Composable
 private fun DetailScreenPreview() {
     DetailScreen(
-        movieId = 0,
+        movieId = "",
         onBackClicked = {}
     )
 }

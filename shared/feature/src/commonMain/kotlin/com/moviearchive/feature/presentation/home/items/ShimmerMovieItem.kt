@@ -1,4 +1,4 @@
-package com.moviearchive.feature.presentation.home
+package com.moviearchive.feature.presentation.home.items
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.width

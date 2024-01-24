@@ -16,7 +16,7 @@ object DestinationsArgs {
 object Destinations {
     const val HOME_ROUT = HOME_SCREEN
     const val DETAIL_ROUT =
-        "$DETAIL_SCREEN/{id:[0-9]+}"
+        "$DETAIL_SCREEN/{id:[a-zA-Z0-9]+}"
 }
 
 class NavigationActions(private val navController: Navigator) {

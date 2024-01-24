@@ -38,6 +38,7 @@ import com.moviearchive.ui.theme.NormalPadding
 import com.moviearchive.ui.theme.SmallEvelation
 import com.moviearchive.ui.theme.SmallPadding
 import com.moviearchive.ui.theme.Star
+import com.moviearchive.ui.theme.TinyPadding
 import com.moviearchive.ui.widget.AsyncImagePainter
 import com.moviearchive.ui.widget.VerticalGradiant
 
@@ -102,23 +103,22 @@ fun MovieItem(
             Row {
                 Icon(
                     modifier = Modifier
-                        .padding(start = NormalPadding, top = SmallPadding)
+                        .padding(start = NormalPadding, top = TinyPadding)
                         .size(DetailIcon),
                     imageVector = Icons.Filled.Star,
                     tint = Star,
                     contentDescription = null
                 )
                 Text(
+                    modifier = Modifier
+                        .padding(start = TinyPadding, top = SmallPadding),
                     text = movie.rate.toString(),
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
                     style = MovieDetailItemTextStyle,
-                    color = Color.Blue,
-                    modifier = Modifier
-                        .padding(start = NormalPadding, top = SmallPadding)
+                    color = Color.Blue
                 )
             }
         }
     }
 }
-

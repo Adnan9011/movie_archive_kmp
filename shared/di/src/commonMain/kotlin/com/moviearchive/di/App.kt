@@ -55,7 +55,7 @@ fun App(appContext: AppContext) {
                 scene(
                     route = Destinations.DETAIL_ROUT
                 ) { backStackEntry ->
-                    backStackEntry.path<Int>(MOVIE_DETAIL_ID_ARG)?.let { movieId ->
+                    backStackEntry.path<String>(MOVIE_DETAIL_ID_ARG)?.let { movieId ->
                         DetailScreen(
                             movieId = movieId,
                             onBackClicked = {

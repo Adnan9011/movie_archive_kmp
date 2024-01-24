@@ -1,4 +1,4 @@
-package com.moviearchive.feature.presentation.detail.widget
+package com.moviearchive.feature.presentation.celebrity.widget
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -15,18 +15,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import com.moviearchive.feature.model.MovieUiModel
+import com.moviearchive.feature.model.CelebritiesUiModel
 import com.moviearchive.ui.theme.DetailImageAspectRatio
 import com.moviearchive.ui.theme.NormalPadding
 import com.moviearchive.ui.widget.AsyncImagePainter
 
 @Composable
 fun HeaderWidget(
-    movie: MovieUiModel,
+    celebrity: CelebritiesUiModel,
 ) {
     Box {
         Image(
-            painter = AsyncImagePainter(movie.image),
+            painter = AsyncImagePainter(celebrity.image),
             contentDescription = null,
             modifier = Modifier
                 .aspectRatio(DetailImageAspectRatio),

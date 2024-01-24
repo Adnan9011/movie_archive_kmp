@@ -6,14 +6,20 @@ import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.fetch.NetworkFetcher
 import com.moviearchive.core.platform.AppContext
+import com.moviearchive.feature.model.CelebritiesUiModel
+import com.moviearchive.feature.presentation.celebrity.CelebrityScreen
 import com.moviearchive.feature.presentation.detail.DetailScreen
 import com.moviearchive.feature.presentation.home.HomeScreen
 import com.moviearchive.navigation.Destinations
+import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_ID_ARG
+import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_IMAGE_ARG
+import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_NAME_ARG
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_DETAIL_ID_ARG
 import com.moviearchive.navigation.NavigationActions
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.path
+import moe.tlaster.precompose.navigation.query
 import moe.tlaster.precompose.navigation.rememberNavigator
 import org.koin.compose.KoinApplication
 
@@ -47,8 +53,8 @@ fun App(appContext: AppContext) {
                         onShowDetail = { movieId ->
                             navigationActions.navigateToDetail(movieId)
                         },
-                        onShowCelebrity = { celebrityId ->
-                            //Todo: Create Celebrity Screen
+                        onShowCelebrity = { celebrity ->
+                            navigationActions.navigateToCelebrity(celebrity)
                         }
                     )
                 }
@@ -63,6 +69,21 @@ fun App(appContext: AppContext) {
                             }
                         )
                     }
+                }
+                scene(
+                    route = Destinations.CELEBRITY_ROUT
+                ) { backStackEntry ->
+                    val celebrity = CelebritiesUiModel(
+                        id = backStackEntry.query(name = MOVIE_CELEBRITY_ID_ARG, "") ?: "",
+                        name = backStackEntry.query(name = MOVIE_CELEBRITY_NAME_ARG, "") ?: "",
+                        image = backStackEntry.query(name = MOVIE_CELEBRITY_IMAGE_ARG, "") ?: ""
+                    )
+                    CelebrityScreen(
+                        celebrity = celebrity,
+                        onBackClicked = {
+                            navigationActions.navigateToHome()
+                        }
+                    )
                 }
             }
         }

@@ -30,7 +30,7 @@ import kotlinx.collections.immutable.PersistentList
 fun CelebritiesWidget(
     viewModel: HomeViewModel,
     snackbarHost: SnackbarHostState,
-    onShowCelebrity: (celebrityId: String) -> Unit
+    onShowCelebrity: (celebrity: CelebritiesUiModel) -> Unit
 ) {
     val uiPopularCelebrities by viewModel.uiPopularCelebrities.collectAsState()
     var isEnablePopularCelebritiesShimmer by remember { mutableStateOf(false) }

@@ -37,7 +37,7 @@ import com.moviearchive.ui.widget.VerticalGradiant
 @Composable
 fun CelebrityItem(
     celebrity: CelebritiesUiModel,
-    onShowCelebrity: (celebrityId: String) -> Unit
+    onShowCelebrity: (celebrity: CelebritiesUiModel) -> Unit
 ) {
     Surface(
         modifier = Modifier
@@ -51,7 +51,7 @@ fun CelebrityItem(
         Column(
             modifier = Modifier
                 .wrapContentSize()
-                .clickable { onShowCelebrity(celebrity.id) }
+                .clickable { onShowCelebrity(celebrity) }
         ) {
             Box(
                 modifier = Modifier

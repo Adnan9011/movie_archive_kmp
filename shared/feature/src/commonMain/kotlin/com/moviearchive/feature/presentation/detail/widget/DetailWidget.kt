@@ -30,8 +30,8 @@ fun DetailWidget(
         is Result.Success -> {
             val movie = (uiState as Result.Success<MovieUiModel>).value
 
-            Column() {
-                Header(
+            Column {
+                HeaderWidget(
                     movie = movie
                 )
                 TitleWidget(title = movie.title)

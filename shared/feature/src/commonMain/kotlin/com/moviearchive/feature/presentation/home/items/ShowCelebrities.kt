@@ -9,7 +9,7 @@ import kotlinx.collections.immutable.PersistentList
 @Composable
 fun ShowCelebrities(
     celebrities: PersistentList<CelebritiesUiModel>,
-    onShowCelebrity: (celebrityId: String) -> Unit
+    onShowCelebrity: (celebrity: CelebritiesUiModel) -> Unit
 ) {
     LazyRow {
         items(

@@ -1,6 +1,6 @@
 package com.moviearchive.feature.model
 
-import com.moviearchive.domain.model.CelebritiesDomainModel
+import com.moviearchive.domain.model.CelebrityDomainModel
 import com.moviearchive.domain.model.PagingDomainModel
 
 data class PagingUiModel<T>(
@@ -9,7 +9,7 @@ data class PagingUiModel<T>(
     val list: List<T>
 )
 
-internal fun PagingDomainModel<CelebritiesDomainModel>.toUi() = PagingUiModel<CelebritiesUiModel>(
+internal fun PagingDomainModel<CelebrityDomainModel>.toUi() = PagingUiModel<CelebrityUiModel>(
     hasNextPage = hasNextPage,
     endCursor = endCursor,
     list = list.map { it.toUi() }

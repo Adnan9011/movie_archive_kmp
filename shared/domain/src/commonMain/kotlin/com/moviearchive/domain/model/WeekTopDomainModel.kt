@@ -17,3 +17,11 @@ internal fun WeekTopDataModel.toDomain() = WeekTopDomainModel(
     rate = rate,
     duration = duration
 )
+
+internal fun WeekTopDomainModel.toData() = WeekTopDataModel(
+    id = id,
+    title = title,
+    image = image,
+    rate = rate,
+    duration = duration
+)

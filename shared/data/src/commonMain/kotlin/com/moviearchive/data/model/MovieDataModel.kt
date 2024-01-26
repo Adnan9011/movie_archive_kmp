@@ -13,7 +13,7 @@ data class MovieDataModel(
 internal fun MovieApiModel.toData() = MovieDataModel(
     id = id,
     title = title,
-    image = imageUrl,
+    image = image,
     year = year,
     stars = stars
 )

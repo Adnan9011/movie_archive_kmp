@@ -1,8 +1,12 @@
 package com.moviearchive.data.di
 
 import com.moviearchive.core.platform.AppContext
+import com.moviearchive.data.repository.CelebrityRepository
+import com.moviearchive.data.repository.CelebrityRepositoryImpl
 import com.moviearchive.data.repository.MovieRepository
 import com.moviearchive.data.repository.MovieRepositoryImpl
+import com.moviearchive.data.repository.WeekTopRepository
+import com.moviearchive.data.repository.WeekTopRepositoryImpl
 import com.moviearchive.data.source.api.api.ApiService
 import com.moviearchive.data.source.api.api.ApiServiceImpl
 import com.moviearchive.data.source.api.util.HEADER.HOST
@@ -12,8 +16,10 @@ import com.moviearchive.data.source.api.util.HEADER.KEY_TOKEN
 import com.moviearchive.data.source.api.util.KtorLogger
 import com.moviearchive.data.source.api.util.Rout
 import com.moviearchive.data.source.datastore.DataStoreSource
-import com.moviearchive.data.source.db.dao.MovieDao
-import com.moviearchive.data.source.db.dao.MovieDaoImpl
+import com.moviearchive.data.source.db.dao.CelebrityDao
+import com.moviearchive.data.source.db.dao.CelebrityDaoImpl
+import com.moviearchive.data.source.db.dao.WeekTopDao
+import com.moviearchive.data.source.db.dao.WeekTopDaoImpl
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
@@ -36,7 +42,9 @@ expect fun platformModule(appContext: AppContext): Module
 
 @OptIn(ExperimentalSerializationApi::class)
 val dataModule = module {
-    single<MovieRepository> { MovieRepositoryImpl(api = get(), dao = get(), dataStore = get()) }
+    single<MovieRepository> { MovieRepositoryImpl(api = get()) }
+    single<WeekTopRepository> { WeekTopRepositoryImpl(api = get(), dao = get()) }
+    single<CelebrityRepository> { CelebrityRepositoryImpl(api = get(), dao = get()) }
 
     single { DataStoreSource() }
 
@@ -61,7 +69,8 @@ val dataModule = module {
             }
         }.also { Napier.base(DebugAntilog()) }
     }
-    single<MovieDao> { MovieDaoImpl(db = get()) }
+    single<WeekTopDao> { WeekTopDaoImpl(db = get()) }
+    single<CelebrityDao> { CelebrityDaoImpl(db = get()) }
 
     single { Dispatchers.IO }
     single<ApiService> { ApiServiceImpl(httpClient = get()) }

@@ -1,0 +1,22 @@
+CREATE TABLE WeekTopTable (
+    id TEXT PRIMARY KEY NOT NULL,
+    title TEXT NOT NULL,
+    image TEXT NOT NULL,
+    rate REAL NOT NULL,
+    duration INTEGER NOT NULL
+);
+
+insert:
+INSERT OR IGNORE INTO WeekTopTable VALUES (:id,:title,:image,:rate,:duration);
+
+deleteAll:
+DELETE FROM WeekTopTable;
+
+delete:
+DELETE FROM WeekTopTable WHERE id=:id;
+
+getAll:
+SELECT * FROM WeekTopTable;
+
+getMovie:
+SELECT * FROM WeekTopTable WHERE id=:id;

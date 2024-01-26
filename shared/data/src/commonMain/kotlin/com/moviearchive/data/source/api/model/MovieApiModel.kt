@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 data class MovieApiModel(
     @SerialName("id") val id: String,
     @SerialName("title") val title: String,
-    @SerialName("image") val imageUrl: String,
+    @SerialName("image") val image: String,
     @SerialName("year") val year: Int = 0,
     @SerialName("stars") val stars: String
 )

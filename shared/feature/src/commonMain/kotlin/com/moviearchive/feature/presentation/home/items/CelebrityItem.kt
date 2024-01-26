@@ -20,7 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
-import com.moviearchive.feature.model.CelebritiesUiModel
+import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.ui.theme.GradientBlack
 import com.moviearchive.ui.theme.GradientDarkGray
 import com.moviearchive.ui.theme.GradientWhite
@@ -36,8 +36,8 @@ import com.moviearchive.ui.widget.VerticalGradiant
 
 @Composable
 fun CelebrityItem(
-    celebrity: CelebritiesUiModel,
-    onShowCelebrity: (celebrity: CelebritiesUiModel) -> Unit
+    celebrity: CelebrityUiModel,
+    onShowCelebrity: (celebrity: CelebrityUiModel) -> Unit
 ) {
     Surface(
         modifier = Modifier

@@ -11,20 +11,28 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import com.moviearchive.feature.model.CelebritiesUiModel
+import com.moviearchive.feature.model.CelebrityUiModel
+import com.moviearchive.feature.presentation.celebrity.CelebrityViewModel
 import com.moviearchive.ui.theme.DetailImageAspectRatio
 import com.moviearchive.ui.theme.NormalPadding
 import com.moviearchive.ui.widget.AsyncImagePainter
 
 @Composable
 fun HeaderWidget(
-    celebrity: CelebritiesUiModel,
+    celebrity: CelebrityUiModel,
+    viewModel: CelebrityViewModel
 ) {
     Box {
+        var isFavorite by remember { mutableStateOf(false) }
+
         Image(
             painter = AsyncImagePainter(celebrity.image),
             contentDescription = null,
@@ -34,15 +42,16 @@ fun HeaderWidget(
         )
         FloatingActionButton(
             onClick = {
-                //Todo: Implement it
+                isFavorite = !isFavorite
+                viewModel.updateCelebrity(celebrity)
             },
             modifier = Modifier
                 .padding(NormalPadding)
                 .align(Alignment.BottomEnd),
             shape = CircleShape
         ) {
-            Icon(//Todo: Implement isLike
-                if (false) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+            Icon(
+                if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
                 tint = Color.Red,
                 contentDescription = null
             )

@@ -15,7 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.moviearchive.core.Result
-import com.moviearchive.feature.model.CelebritiesUiModel
+import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.feature.presentation.home.HomeViewModel
 import com.moviearchive.feature.presentation.home.items.ShowCelebrities
 import com.moviearchive.feature.presentation.home.items.ShowShimmerCelebrities
@@ -30,7 +30,7 @@ import kotlinx.collections.immutable.PersistentList
 fun CelebritiesWidget(
     viewModel: HomeViewModel,
     snackbarHost: SnackbarHostState,
-    onShowCelebrity: (celebrity: CelebritiesUiModel) -> Unit
+    onShowCelebrity: (celebrity: CelebrityUiModel) -> Unit
 ) {
     val uiPopularCelebrities by viewModel.uiPopularCelebrities.collectAsState()
     var isEnablePopularCelebritiesShimmer by remember { mutableStateOf(false) }
@@ -70,7 +70,7 @@ fun CelebritiesWidget(
             is Result.Success -> {
                 isEnablePopularCelebritiesShimmer = false
                 val celebrities =
-                    (uiPopularCelebrities as Result.Success<PersistentList<CelebritiesUiModel>>).value
+                    (uiPopularCelebrities as Result.Success<PersistentList<CelebrityUiModel>>).value
                 if (celebrities.isEmpty()) {
                     EmptyCelebrity()
                 } else {

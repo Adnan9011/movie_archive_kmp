@@ -2,13 +2,15 @@ package com.moviearchive.feature.presentation.celebrity
 
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import com.moviearchive.feature.model.CelebritiesUiModel
+import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.feature.presentation.celebrity.widget.CelebrityWidget
 import com.moviearchive.ui.widget.AppBarDetail
+import org.koin.compose.koinInject
 
 @Composable
 fun CelebrityScreen(
-    celebrity: CelebritiesUiModel,
+    celebrity: CelebrityUiModel,
+    viewModel: CelebrityViewModel = koinInject(),
     onBackClicked: () -> Unit
 ) {
     Scaffold(
@@ -19,13 +21,20 @@ fun CelebrityScreen(
             )
         }
     ) {
-        CelebrityContent(celebrity)
+        CelebrityContent(
+            celebrity = celebrity,
+            viewModel = viewModel
+        )
     }
 }
 
 @Composable
 fun CelebrityContent(
-    celebrity: CelebritiesUiModel
+    celebrity: CelebrityUiModel,
+    viewModel: CelebrityViewModel
 ) {
-    CelebrityWidget(celebrity = celebrity)
+    CelebrityWidget(
+        celebrity = celebrity,
+        viewModel = viewModel
+    )
 }

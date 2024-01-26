@@ -1,6 +1,6 @@
 package com.moviearchive.navigation
 
-import com.moviearchive.feature.model.CelebritiesUiModel
+import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_ID_ARG
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_IMAGE_ARG
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_NAME_ARG
@@ -41,7 +41,7 @@ class NavigationActions(private val navController: Navigator) {
         )
     }
 
-    fun navigateToCelebrity(celebrity: CelebritiesUiModel) {
+    fun navigateToCelebrity(celebrity: CelebrityUiModel) {
         navController.navigate(
             CELEBRITY_SCREEN +
                 "?$MOVIE_CELEBRITY_ID_ARG=${celebrity.id}" +

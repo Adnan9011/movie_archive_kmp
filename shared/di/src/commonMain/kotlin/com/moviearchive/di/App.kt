@@ -6,7 +6,7 @@ import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.fetch.NetworkFetcher
 import com.moviearchive.core.platform.AppContext
-import com.moviearchive.feature.model.CelebritiesUiModel
+import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.feature.presentation.celebrity.CelebrityScreen
 import com.moviearchive.feature.presentation.detail.DetailScreen
 import com.moviearchive.feature.presentation.home.HomeScreen
@@ -73,7 +73,7 @@ fun App(appContext: AppContext) {
                 scene(
                     route = Destinations.CELEBRITY_ROUT
                 ) { backStackEntry ->
-                    val celebrity = CelebritiesUiModel(
+                    val celebrity = CelebrityUiModel(
                         id = backStackEntry.query(name = MOVIE_CELEBRITY_ID_ARG, "") ?: "",
                         name = backStackEntry.query(name = MOVIE_CELEBRITY_NAME_ARG, "") ?: "",
                         image = backStackEntry.query(name = MOVIE_CELEBRITY_IMAGE_ARG, "") ?: ""

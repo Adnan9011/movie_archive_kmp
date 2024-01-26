@@ -3,9 +3,11 @@ package com.moviearchive.feature.presentation.home
 import com.moviearchive.core.Error
 import com.moviearchive.core.Result
 import com.moviearchive.core.map
-import com.moviearchive.domain.usecase.GetPopularCelebritiesUseCase
-import com.moviearchive.domain.usecase.GetWeekTopTenMoviesUseCase
-import com.moviearchive.feature.model.CelebritiesUiModel
+import com.moviearchive.domain.usecase.celebrity.GetFavoriteCelebritiesUseCase
+import com.moviearchive.domain.usecase.celebrity.GetPopularCelebritiesUseCase
+import com.moviearchive.domain.usecase.weekTopTen.GetFavoriteWeekTopTenMoviesUseCase
+import com.moviearchive.domain.usecase.weekTopTen.GetWeekTopTenMoviesUseCase
+import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.feature.model.WeekTopUiModel
 import com.moviearchive.feature.model.toUi
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
@@ -21,7 +23,9 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val getWeekTopTenMovies: GetWeekTopTenMoviesUseCase,
-    private val getPopularCelebrities: GetPopularCelebritiesUseCase
+    private val getPopularCelebrities: GetPopularCelebritiesUseCase,
+    private val getFavoriteCelebrities: GetFavoriteCelebritiesUseCase,
+    private val getFavoriteWeekTopTenMovies: GetFavoriteWeekTopTenMoviesUseCase,
 ) : ViewModel() {
 
     private val _uiWeekTopTen =
@@ -29,10 +33,10 @@ class HomeViewModel(
     val uiWeekTopTen = _uiWeekTopTen.asStateFlow()
 
     private val _uiPopularCelebrities =
-        MutableStateFlow<Result<PersistentList<CelebritiesUiModel>, Error>>(Result.Loading)
+        MutableStateFlow<Result<PersistentList<CelebrityUiModel>, Error>>(Result.Loading)
     val uiPopularCelebrities = _uiPopularCelebrities.asStateFlow()
 
-    fun getWeekTopTen() {
+    private fun getWeekTopTen() {
         viewModelScope.launch {
             getWeekTopTenMovies()
                 .flowOn(Dispatchers.IO)
@@ -56,7 +60,31 @@ class HomeViewModel(
         }
     }
 
-    fun getCelebrities() {
+    private fun getFavoriteWeekTopTen() {
+        viewModelScope.launch {
+            getFavoriteWeekTopTenMovies()
+                .flowOn(Dispatchers.IO)
+                .catch { throwable ->
+                    _uiWeekTopTen.value =
+                        Result.Failure(
+                            Error(
+                                message = throwable.message ?: "",
+                                throwable = throwable
+                            )
+                        )
+                }
+                .collect { result ->
+                    _uiWeekTopTen.value =
+                        result.map { list ->
+                            list.map {
+                                it.toUi()
+                            }.toPersistentList()
+                        }
+                }
+        }
+    }
+
+    private fun getCelebrities() {
         viewModelScope.launch {
             getPopularCelebrities()
                 .flowOn(Dispatchers.IO)
@@ -76,5 +104,37 @@ class HomeViewModel(
                         }
                 }
         }
+    }
+
+    private fun getFavoriteCelebrity() {
+        viewModelScope.launch {
+            getFavoriteCelebrities()
+                .flowOn(Dispatchers.IO)
+                .catch { throwable ->
+                    _uiPopularCelebrities.value =
+                        Result.Failure(
+                            Error(
+                                message = throwable.message ?: "",
+                                throwable = throwable
+                            )
+                        )
+                }
+                .collect { result ->
+                    _uiPopularCelebrities.value =
+                        result.map { list ->
+                            list.map { it.toUi() }.toPersistentList()
+                        }
+                }
+        }
+    }
+
+    fun getData() {
+        getWeekTopTen()
+        getCelebrities()
+    }
+
+    fun getFavorites() {
+        getFavoriteWeekTopTen()
+        getFavoriteCelebrity()
     }
 }

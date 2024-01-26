@@ -3,7 +3,8 @@ package com.moviearchive.feature.presentation.detail
 import com.moviearchive.core.Error
 import com.moviearchive.core.Result
 import com.moviearchive.core.map
-import com.moviearchive.domain.usecase.GetMovieUseCase
+import com.moviearchive.domain.usecase.movie.GetMovieUseCase
+import com.moviearchive.domain.usecase.weekTopTen.UpdateWeekTopTenMoviesUseCase
 import com.moviearchive.feature.model.MovieUiModel
 import com.moviearchive.feature.model.toUi
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
@@ -17,6 +18,7 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel(
     val getMovieUseCase: GetMovieUseCase,
+    val updateTopTenMoviesUseCase: UpdateWeekTopTenMoviesUseCase
 ) : ViewModel() {
 
     private val _uiState =

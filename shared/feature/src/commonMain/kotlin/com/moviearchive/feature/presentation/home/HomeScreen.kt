@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.moviearchive.feature.model.CelebritiesUiModel
+import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.feature.presentation.home.widget.CelebritiesWidget
 import com.moviearchive.feature.presentation.home.widget.TopBannerWidget
 import com.moviearchive.feature.presentation.home.widget.TopTenWidget
@@ -23,7 +23,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = koinInject(),
     onShowDetail: (movieId: String) -> Unit,
-    onShowCelebrity: (celebrity: CelebritiesUiModel) -> Unit
+    onShowCelebrity: (celebrity: CelebrityUiModel) -> Unit
 ) {
 
     val snackbarHostState = remember { SnackbarHostState() }
@@ -33,7 +33,10 @@ fun HomeScreen(
             AppBarHome(
                 title = "Movies",
                 onFavoriteClicked = { isFavorite ->
-                    //Todo: :) you know what to do, Change SQLDelight table and so on
+                    if (isFavorite)
+                        viewModel.getFavorites()
+                    else
+                        viewModel.getData()
                 }
             )
         },
@@ -55,15 +58,14 @@ fun HomeContent(
     modifier: Modifier,
     snackbarHost: SnackbarHostState,
     onShowDetail: (movieId: String) -> Unit,
-    onShowCelebrity: (celebrity: CelebritiesUiModel) -> Unit,
+    onShowCelebrity: (celebrity: CelebrityUiModel) -> Unit,
 ) {
     val scrollState = rememberScrollState()
 
     LaunchedEffect(
         key1 = true,
     ) {
-        viewModel.getWeekTopTen()
-        viewModel.getCelebrities()
+        viewModel.getData()
     }
 
     Column(

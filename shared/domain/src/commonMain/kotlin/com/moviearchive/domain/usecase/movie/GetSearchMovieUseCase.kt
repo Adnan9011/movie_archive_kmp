@@ -1,4 +1,4 @@
-package com.moviearchive.domain.usecase
+package com.moviearchive.domain.usecase.movie
 
 import com.moviearchive.core.Error
 import com.moviearchive.core.Result
@@ -10,12 +10,14 @@ import com.moviearchive.domain.util.UseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class GetMovieUseCase internal constructor(
+class GetSearchMovieUseCase internal constructor(
     private val repository: MovieRepository
-) : UseCase<String, Flow<Result<MovieDomainModel, Error>>> {
-    override suspend fun invoke(id: String): Flow<Result<MovieDomainModel, Error>> {
-        return repository.get(id).map { result ->
-            result.map { it.toDomain() }
+) : UseCase<String, Flow<Result<List<MovieDomainModel>, Error>>> {
+    override suspend fun invoke(id: String): Flow<Result<List<MovieDomainModel>, Error>> {
+        return repository.search(id).map { result ->
+            result.map { list ->
+                list.map { it.toDomain() }
+            }
         }
     }
 }

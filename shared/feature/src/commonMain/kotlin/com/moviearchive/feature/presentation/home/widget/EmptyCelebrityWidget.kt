@@ -21,7 +21,7 @@ import com.moviearchive.ui.theme.MovieItemHeight
 import com.moviearchive.ui.theme.NormalPadding
 
 @Composable
-fun EmptyCelebrity() {
+fun EmptyCelebrityWidget() {
     Column(
         modifier = Modifier
             .padding(NormalPadding)

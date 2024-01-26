@@ -60,6 +60,7 @@ fun TopTenWidget(
             }
 
             is Result.Failure -> {
+                ErrorWidget()
                 ShowSnackbar(
                     snackbarHostState = snackbarHost,
                     scope = rememberCoroutineScope(),

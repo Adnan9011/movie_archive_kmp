@@ -60,6 +60,7 @@ fun CelebritiesWidget(
             }
 
             is Result.Failure -> {
+                ErrorWidget()
                 ShowSnackbar(
                     snackbarHostState = snackbarHost,
                     scope = rememberCoroutineScope(),
@@ -72,7 +73,7 @@ fun CelebritiesWidget(
                 val celebrities =
                     (uiPopularCelebrities as Result.Success<PersistentList<CelebrityUiModel>>).value
                 if (celebrities.isEmpty()) {
-                    EmptyCelebrity()
+                    EmptyCelebrityWidget()
                 } else {
                     ShowCelebrities(
                         celebrities = celebrities,

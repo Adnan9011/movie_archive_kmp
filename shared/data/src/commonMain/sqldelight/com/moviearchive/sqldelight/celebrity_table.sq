@@ -1,0 +1,17 @@
+CREATE TABLE CelebrityTable (
+    id TEXT PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL,
+    image TEXT NOT NULL
+);
+
+getAll:
+SELECT * FROM CelebrityTable;
+
+insert:
+INSERT OR REPLACE INTO CelebrityTable VALUES (:id,:name,:image);
+
+deleteAll:
+DELETE FROM CelebrityTable;
+
+delete:
+DELETE FROM CelebrityTable WHERE id=:celebrityId;

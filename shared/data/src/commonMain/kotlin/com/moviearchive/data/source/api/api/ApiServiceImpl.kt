@@ -2,7 +2,7 @@ package com.moviearchive.data.source.api.api
 
 import com.moviearchive.core.Error
 import com.moviearchive.core.Result
-import com.moviearchive.data.source.api.model.CelebritiesApiModel
+import com.moviearchive.data.source.api.model.CelebrityApiModel
 import com.moviearchive.data.source.api.model.MovieApiModel
 import com.moviearchive.data.source.api.model.PagingApiModel
 import com.moviearchive.data.source.api.model.ResponseApiModel
@@ -104,12 +104,12 @@ class ApiServiceImpl(val httpClient: HttpClient) : ApiService {
         }
     }
 
-    override fun popularCelebrities(): Flow<Result<ResponsePagingApiModel<PagingApiModel<CelebritiesApiModel>>, Error>> =
+    override fun popularCelebrities(): Flow<Result<ResponsePagingApiModel<PagingApiModel<CelebrityApiModel>>, Error>> =
         flow {
             emit(Result.Loading)
             try {
                 val responseBody = httpClient.get(POPULAR_CELEBRITIES)
-                    .body<ResponsePagingApiModel<PagingApiModel<CelebritiesApiModel>>>()
+                    .body<ResponsePagingApiModel<PagingApiModel<CelebrityApiModel>>>()
                 when (responseBody.message) {
                     MessageStatus.Success -> {
                         emit(Result.Success(responseBody))

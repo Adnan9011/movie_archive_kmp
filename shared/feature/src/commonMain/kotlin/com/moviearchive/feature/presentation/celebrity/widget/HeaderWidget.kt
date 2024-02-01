@@ -51,7 +51,7 @@ fun HeaderWidget(
             shape = CircleShape
         ) {
             Icon(
-                if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+                if (celebrity.isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
                 tint = Color.Red,
                 contentDescription = null
             )

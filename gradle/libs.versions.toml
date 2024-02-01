@@ -54,6 +54,7 @@ touchlab = { group = "co.touchlab", name = "stately-common", version.ref = "touc
 sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-native = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
 sqldelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqldelight" }
+
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-core-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit-junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit115" }

@@ -16,7 +16,7 @@ class GetFavoriteCelebritiesUseCase internal constructor(
     override suspend fun invoke(): Flow<Result<List<CelebrityDomainModel>, Error>> {
         return repository.getFavorites().map { result ->
             result.map { list ->
-                list.map { it.toDomain() }
+                list.map { it.toDomain(true) }
             }
         }
     }

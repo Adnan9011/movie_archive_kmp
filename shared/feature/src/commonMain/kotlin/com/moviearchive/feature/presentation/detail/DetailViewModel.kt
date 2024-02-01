@@ -4,8 +4,9 @@ import com.moviearchive.core.Error
 import com.moviearchive.core.Result
 import com.moviearchive.core.map
 import com.moviearchive.domain.usecase.movie.GetMovieUseCase
-import com.moviearchive.domain.usecase.weekTopTen.UpdateWeekTopTenMoviesUseCase
+import com.moviearchive.domain.usecase.movie.UpdateMoviesUseCase
 import com.moviearchive.feature.model.MovieUiModel
+import com.moviearchive.feature.model.toDomain
 import com.moviearchive.feature.model.toUi
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel(
     val getMovieUseCase: GetMovieUseCase,
-    val updateTopTenMoviesUseCase: UpdateWeekTopTenMoviesUseCase
+    val updateMoviesUseCase: UpdateMoviesUseCase
 ) : ViewModel() {
 
     private val _uiState =
@@ -52,6 +53,17 @@ class DetailViewModel(
                             }
                         }
                 }
+        }
+    }
+
+    fun updateMovie(isFavorite: Boolean, movie: MovieUiModel) {
+        viewModelScope.launch {
+            updateMoviesUseCase(
+                UpdateMoviesUseCase.UpdateModel(
+                    isFavorite = isFavorite,
+                    movie = movie.toDomain()
+                )
+            )
         }
     }
 }

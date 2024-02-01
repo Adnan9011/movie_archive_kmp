@@ -19,6 +19,7 @@ import com.moviearchive.feature.model.WeekTopUiModel
 import com.moviearchive.feature.presentation.home.HomeViewModel
 import com.moviearchive.feature.presentation.home.items.ShowMovies
 import com.moviearchive.feature.presentation.home.items.ShowShimmerMovies
+import com.moviearchive.feature.util.HOME_TOP_TEN_WEEK
 import com.moviearchive.feature.util.ShimmerMovieItemCount
 import com.moviearchive.ui.theme.HighPadding
 import com.moviearchive.ui.theme.HomeTextTitleStyle
@@ -41,7 +42,7 @@ fun TopTenWidget(
             .wrapContentHeight()
     ) {
         Text(
-            text = "Top Ten Movies of the Week",
+            text = HOME_TOP_TEN_WEEK,
             style = HomeTextTitleStyle,
             modifier = Modifier.padding(
                 top = NormalPadding,

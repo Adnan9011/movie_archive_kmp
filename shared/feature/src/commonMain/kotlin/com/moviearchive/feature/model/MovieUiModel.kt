@@ -9,7 +9,8 @@ data class MovieUiModel(
     val title: String,
     val image: String,
     val year: Int,
-    private val stars: String
+    val stars: String,
+    val isFavorite: Boolean
 ) {
     fun getStars(): PersistentList<String> =
         stars
@@ -23,5 +24,15 @@ fun MovieDomainModel.toUi() = MovieUiModel(
     title = title,
     image = image,
     year = year,
-    stars = stars
+    stars = stars,
+    isFavorite = isFavorite
+)
+
+fun MovieUiModel.toDomain() = MovieDomainModel(
+    id = id,
+    title = title,
+    image = image,
+    year = year,
+    stars = stars,
+    isFavorite = isFavorite
 )

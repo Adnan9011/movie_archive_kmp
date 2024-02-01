@@ -11,20 +11,29 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import com.moviearchive.feature.model.MovieUiModel
+import com.moviearchive.feature.presentation.detail.DetailViewModel
+import com.moviearchive.feature.util.DUMMY_MOVIE_ID
 import com.moviearchive.ui.theme.DetailImageAspectRatio
 import com.moviearchive.ui.theme.NormalPadding
 import com.moviearchive.ui.widget.AsyncImagePainter
 
 @Composable
 fun HeaderWidget(
+    viewModel: DetailViewModel,
     movie: MovieUiModel,
 ) {
     Box {
+        var isFavorite by remember { mutableStateOf(movie.isFavorite) }
+
         Image(
             painter = AsyncImagePainter(movie.image),
             contentDescription = null,
@@ -32,20 +41,30 @@ fun HeaderWidget(
                 .aspectRatio(DetailImageAspectRatio),
             contentScale = ContentScale.Crop
         )
-        FloatingActionButton(
-            onClick = {
-                //Todo: Implement it
-            },
-            modifier = Modifier
-                .padding(NormalPadding)
-                .align(Alignment.BottomEnd),
-            shape = CircleShape
-        ) {
-            Icon(//Todo: Implement isLike
-                if (false) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                tint = Color.Red,
-                contentDescription = null
-            )
-        }
+        /*
+         * Whey != "/awards-central"
+         * beacause some WeekTop Movies doesn't have id in movie repository
+         * and then return /awards-central id
+         */
+        if (movie.id != DUMMY_MOVIE_ID)
+            FloatingActionButton(
+                onClick = {
+                    isFavorite = !isFavorite
+                    viewModel.updateMovie(
+                        isFavorite = isFavorite,
+                        movie = movie
+                    )
+                },
+                modifier = Modifier
+                    .padding(NormalPadding)
+                    .align(Alignment.BottomEnd),
+                shape = CircleShape
+            ) {
+                Icon(
+                    if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+                    tint = Color.Red,
+                    contentDescription = null
+                )
+            }
     }
 }

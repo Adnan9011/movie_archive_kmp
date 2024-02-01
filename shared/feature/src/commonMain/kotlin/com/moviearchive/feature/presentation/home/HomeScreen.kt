@@ -15,6 +15,7 @@ import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.feature.presentation.home.widget.CelebritiesWidget
 import com.moviearchive.feature.presentation.home.widget.TopBannerWidget
 import com.moviearchive.feature.presentation.home.widget.TopTenWidget
+import com.moviearchive.feature.util.HOME_MOVIE_TITLE
 import com.moviearchive.ui.widget.AppBarHome
 import org.koin.compose.koinInject
 
@@ -31,7 +32,7 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             AppBarHome(
-                title = "Movies",
+                title = HOME_MOVIE_TITLE,
                 onFavoriteClicked = { isFavorite ->
                     if (isFavorite)
                         viewModel.getFavorites()

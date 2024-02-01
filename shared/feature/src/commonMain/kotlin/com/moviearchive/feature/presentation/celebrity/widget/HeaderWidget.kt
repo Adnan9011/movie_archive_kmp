@@ -43,7 +43,10 @@ fun HeaderWidget(
         FloatingActionButton(
             onClick = {
                 isFavorite = !isFavorite
-                viewModel.updateCelebrity(celebrity)
+                viewModel.updateCelebrity(
+                    isFavorite = isFavorite,
+                    celebrity = celebrity
+                )
             },
             modifier = Modifier
                 .padding(NormalPadding)
@@ -51,7 +54,7 @@ fun HeaderWidget(
             shape = CircleShape
         ) {
             Icon(
-                if (celebrity.isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+                if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
                 tint = Color.Red,
                 contentDescription = null
             )

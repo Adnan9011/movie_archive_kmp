@@ -3,9 +3,10 @@ package com.moviearchive.feature.presentation.home
 import com.moviearchive.core.Error
 import com.moviearchive.core.Result
 import com.moviearchive.core.map
+import com.moviearchive.domain.model.toWeekTop
 import com.moviearchive.domain.usecase.celebrity.GetFavoriteCelebritiesUseCase
 import com.moviearchive.domain.usecase.celebrity.GetPopularCelebritiesUseCase
-import com.moviearchive.domain.usecase.weekTopTen.GetFavoriteWeekTopTenMoviesUseCase
+import com.moviearchive.domain.usecase.movie.GetFavoriteMoviesUseCase
 import com.moviearchive.domain.usecase.weekTopTen.GetWeekTopTenMoviesUseCase
 import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.feature.model.WeekTopUiModel
@@ -25,7 +26,7 @@ class HomeViewModel(
     private val getWeekTopTenMovies: GetWeekTopTenMoviesUseCase,
     private val getPopularCelebrities: GetPopularCelebritiesUseCase,
     private val getFavoriteCelebrities: GetFavoriteCelebritiesUseCase,
-    private val getFavoriteWeekTopTenMovies: GetFavoriteWeekTopTenMoviesUseCase,
+    private val getFavoriteMovies: GetFavoriteMoviesUseCase,
 ) : ViewModel() {
 
     private val _uiWeekTopTen =
@@ -62,7 +63,7 @@ class HomeViewModel(
 
     private fun getFavoriteWeekTopTen() {
         viewModelScope.launch {
-            getFavoriteWeekTopTenMovies()
+            getFavoriteMovies()
                 .flowOn(Dispatchers.IO)
                 .catch { throwable ->
                     _uiWeekTopTen.value =
@@ -77,7 +78,7 @@ class HomeViewModel(
                     _uiWeekTopTen.value =
                         result.map { list ->
                             list.map {
-                                it.toUi()
+                                it.toWeekTop().toUi()
                             }.toPersistentList()
                         }
                 }

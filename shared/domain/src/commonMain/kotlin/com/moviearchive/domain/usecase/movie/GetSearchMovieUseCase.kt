@@ -16,7 +16,7 @@ class GetSearchMovieUseCase internal constructor(
     override suspend fun invoke(id: String): Flow<Result<List<MovieDomainModel>, Error>> {
         return repository.search(id).map { result ->
             result.map { list ->
-                list.map { it.toDomain() }
+                list.map { it.toDomain(isFavorite = false) }
             }
         }
     }

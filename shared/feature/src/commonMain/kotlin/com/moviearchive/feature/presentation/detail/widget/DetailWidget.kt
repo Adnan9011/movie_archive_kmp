@@ -32,6 +32,7 @@ fun DetailWidget(
 
             Column {
                 HeaderWidget(
+                    viewModel = viewModel,
                     movie = movie
                 )
                 TitleWidget(title = movie.title)

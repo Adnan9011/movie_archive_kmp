@@ -9,9 +9,9 @@ data class PagingDomainModel<T>(
     val list: List<T>
 )
 
-internal fun PagingDataModel<CelebrityDataModel>.toDomain() =
-    PagingDomainModel<CelebrityDomainModel>(
+internal fun PagingDataModel<CelebrityDataModel>.toDomain(map: (CelebrityDataModel) -> CelebrityDomainModel) =
+    PagingDomainModel(
         hasNextPage = hasNextPage,
         endCursor = endCursor,
-        list = list.map { it.toDomain() }
+        list = list.map { map(it) }
     )

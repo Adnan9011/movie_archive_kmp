@@ -15,7 +15,7 @@ internal fun WeekTopApiModel.toData() = WeekTopDataModel(
     id = id,
     title = title.text,
     image = image.url,
-    rate = rate.value,
+    rate = rate?.value ?: 0.0,
     duration = length?.seconds ?: 0
 )
 

@@ -4,7 +4,7 @@ import com.moviearchive.data.source.api.model.CelebrityApiModel
 import com.moviearchive.sqldelight.CelebrityTable
 
 data class CelebrityDataModel(
-    val id: String,
+    var id: String,
     val name: String,
     val image: String
 )

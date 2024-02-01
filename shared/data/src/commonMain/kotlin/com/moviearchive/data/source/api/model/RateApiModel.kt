@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RateApiModel(
-    @SerialName("aggregateRating") val value: Double
+    @SerialName("aggregateRating") val value: Double? = 0.0
 )

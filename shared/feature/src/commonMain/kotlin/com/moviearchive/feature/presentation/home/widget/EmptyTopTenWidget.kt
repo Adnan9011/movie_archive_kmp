@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.moviearchive.feature.util.HOME_MOVIE_NOT_FOUND
 import com.moviearchive.ui.theme.EmptyMovieSize
 import com.moviearchive.ui.theme.EmptyTextStyle
 import com.moviearchive.ui.theme.MovieItemHeight
@@ -43,7 +44,7 @@ fun EmptyTopTenWidget() {
             color = Color.Transparent
         )
         Text(
-            text = "Movie Not Found",
+            text = HOME_MOVIE_NOT_FOUND,
             style = EmptyTextStyle
         )
     }

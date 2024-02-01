@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.moviearchive.feature.util.TRY_AGAIN
 import com.moviearchive.ui.theme.EmptyMovieSize
 import com.moviearchive.ui.theme.EmptyTextStyle
 import com.moviearchive.ui.theme.MovieItemHeight
@@ -43,7 +44,7 @@ fun ErrorWidget() {
             color = Color.Transparent
         )
         Text(
-            text = "Try Again",
+            text = TRY_AGAIN,
             style = EmptyTextStyle
         )
     }

@@ -7,8 +7,16 @@ import com.moviearchive.domain.util.UseCase
 
 class UpdatePopularCelebritiesUseCase internal constructor(
     private val repository: CelebrityRepository
-) : UseCase<CelebrityDomainModel, Unit> {
-    override suspend fun invoke(celebrity: CelebrityDomainModel) {
-        repository.favorite(celebrity.toData())
+) : UseCase<UpdatePopularCelebritiesUseCase.UpdateModel, Unit> {
+    override suspend fun invoke(input: UpdateModel) {
+        if (input.isFavorite)
+            repository.favorite(input.celebrity.toData())
+        else
+            repository.delete(input.celebrity.id)
     }
+
+    data class UpdateModel(
+        val isFavorite: Boolean,
+        val celebrity: CelebrityDomainModel
+    )
 }

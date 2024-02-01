@@ -3,7 +3,7 @@ package com.moviearchive.feature.util
 import androidx.compose.ui.unit.dp
 
 const val BANNER_IMAGE_URL =
-    "https://m.media-amazon.com/images/M/MV5BODI0MTYzNTIxNl5BMl5BanBnXkFtZTcwNjg2Nzc0NA@@._V1_.jpg"
+    "https://m.media-amazon.com/images/M/MV5BNTFiNTMxNTQtM2EzOS00NWNhLWFmNzctNjU5ODIzNDIzMzYzXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg"
 
 const val DUMMY_MOVIE_ID = "/awards-central"
 const val HOME_MOVIE_TITLE = "Movies"

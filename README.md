@@ -27,7 +27,7 @@ appreciate it if you could give it a star. Thank you!
 | Implement IMDB api            | ✔️ Implemented   |
 | Refactor Home                 | ✔️ Implemented   |
 | Refactor Celebrity            | ✔️ Implemented   |
-| Refactor Detail               | ⚠️ Working on it |
+| Refactor Detail               | ✔️ Implemented   |
 | Search Movie                  | ⚠️ Working on it |
 | Unit Test                     | ⚠️ Working on it |
 

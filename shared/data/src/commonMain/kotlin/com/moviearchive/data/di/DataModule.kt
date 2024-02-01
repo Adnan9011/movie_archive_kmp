@@ -20,10 +20,12 @@ import com.moviearchive.data.source.db.dao.CelebrityDao
 import com.moviearchive.data.source.db.dao.CelebrityDaoImpl
 import com.moviearchive.data.source.db.dao.WeekTopDao
 import com.moviearchive.data.source.db.dao.WeekTopDaoImpl
+import com.moviearchive.data.util.Constant.TIME_OUT
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
@@ -63,9 +65,14 @@ val dataModule = module {
             install(ContentNegotiation) {
                 json(Json {
                     encodeDefaults = false
-                    explicitNulls = true
+                    explicitNulls = false
                     ignoreUnknownKeys = true
                 })
+            }
+            install(HttpTimeout) {
+                requestTimeoutMillis = TIME_OUT
+                connectTimeoutMillis = TIME_OUT
+                socketTimeoutMillis = TIME_OUT
             }
         }.also { Napier.base(DebugAntilog()) }
     }

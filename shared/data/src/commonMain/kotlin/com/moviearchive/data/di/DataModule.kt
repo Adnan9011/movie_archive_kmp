@@ -18,8 +18,8 @@ import com.moviearchive.data.source.api.util.Rout
 import com.moviearchive.data.source.datastore.DataStoreSource
 import com.moviearchive.data.source.db.dao.CelebrityDao
 import com.moviearchive.data.source.db.dao.CelebrityDaoImpl
-import com.moviearchive.data.source.db.dao.WeekTopDao
-import com.moviearchive.data.source.db.dao.WeekTopDaoImpl
+import com.moviearchive.data.source.db.dao.MovieDao
+import com.moviearchive.data.source.db.dao.MovieDaoImpl
 import com.moviearchive.data.util.Constant.TIME_OUT
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
@@ -44,8 +44,8 @@ expect fun platformModule(appContext: AppContext): Module
 
 @OptIn(ExperimentalSerializationApi::class)
 val dataModule = module {
-    single<MovieRepository> { MovieRepositoryImpl(api = get()) }
-    single<WeekTopRepository> { WeekTopRepositoryImpl(api = get(), dao = get()) }
+    single<MovieRepository> { MovieRepositoryImpl(api = get(), dao = get()) }
+    single<WeekTopRepository> { WeekTopRepositoryImpl(api = get()) }
     single<CelebrityRepository> { CelebrityRepositoryImpl(api = get(), dao = get()) }
 
     single { DataStoreSource() }
@@ -76,7 +76,7 @@ val dataModule = module {
             }
         }.also { Napier.base(DebugAntilog()) }
     }
-    single<WeekTopDao> { WeekTopDaoImpl(db = get()) }
+    single<MovieDao> { MovieDaoImpl(db = get()) }
     single<CelebrityDao> { CelebrityDaoImpl(db = get()) }
 
     single { Dispatchers.IO }

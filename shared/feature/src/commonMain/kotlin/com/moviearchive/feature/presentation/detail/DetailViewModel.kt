@@ -3,10 +3,9 @@ package com.moviearchive.feature.presentation.detail
 import com.moviearchive.core.Error
 import com.moviearchive.core.Result
 import com.moviearchive.core.map
-import com.moviearchive.domain.usecase.GetMovieUseCase
-import com.moviearchive.domain.usecase.UpdateMovieUseCase
+import com.moviearchive.domain.usecase.movie.GetMovieUseCase
+import com.moviearchive.domain.usecase.weekTopTen.UpdateWeekTopTenMoviesUseCase
 import com.moviearchive.feature.model.MovieUiModel
-import com.moviearchive.feature.model.toDomain
 import com.moviearchive.feature.model.toUi
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,43 +14,44 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
     val getMovieUseCase: GetMovieUseCase,
-    val updateMovieUseCase: UpdateMovieUseCase
+    val updateTopTenMoviesUseCase: UpdateWeekTopTenMoviesUseCase
 ) : ViewModel() {
 
     private val _uiState =
         MutableStateFlow<Result<MovieUiModel, Error>>(Result.Loading)
     val uiState = _uiState.asStateFlow()
 
-    fun getMovie(movieId: Int) {
+    private val _movieTitle =
+        MutableStateFlow<String>("Movie")
+    val movieTitle = _movieTitle.asStateFlow()
+
+    fun getMovie(movieId: String) {
         viewModelScope.launch {
             getMovieUseCase(movieId)
                 .flowOn(Dispatchers.IO)
                 .catch { throwable ->
-                    updateError(throwable)
+                    _uiState.value =
+                        Result.Failure(
+                            Error(
+                                message = throwable.message ?: "",
+                                throwable = throwable
+                            )
+                        )
                 }
                 .collect { result ->
+
                     _uiState.value =
-                        result.map { it.toUi() }
+                        result.map {
+                            it.toUi().also {
+                                _movieTitle.value =
+                                    it.title
+                            }
+                        }
                 }
         }
-    }
-
-    fun updateMovie(movie: MovieUiModel) {
-        viewModelScope.launch {
-            updateMovieUseCase(movie.toDomain())
-        }
-    }
-
-    private fun updateLoading(isLoading: Boolean) {
-        _uiState.update { Result.Loading }
-    }
-
-    private fun updateError(throwable: Throwable) {
-        _uiState.update { Result.Failure(Error(throwable = throwable)) }
     }
 }

@@ -2,20 +2,19 @@ package com.moviearchive.feature.android.presentation.home
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.moviearchive.feature.model.MovieUiModel
-import com.moviearchive.feature.presentation.home.MovieItem
+import com.moviearchive.feature.model.WeekTopUiModel
+import com.moviearchive.feature.presentation.home.items.MovieItem
 
 @Preview
 @Composable
-private fun MovieItemPreview() {
+private fun MovieItemPreview() {//TODO: Refactor
     MovieItem(
-        movie = MovieUiModel(
-            id = 0,
-            imageUrl = "",
+        movie = WeekTopUiModel(
+            id = "",
             title = "Title",
-            numComments = 0,
-            numLikes = 0,
-            isLiked = false
+            image = "",
+            rate = 7.8,
+            duration = 3000
         ),
         onShowDetail = {}
     )

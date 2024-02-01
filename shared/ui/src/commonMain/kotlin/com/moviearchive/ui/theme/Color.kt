@@ -13,3 +13,5 @@ val Pink40 = Color(0xFF7D5260)
 val GradientWhite = Color(0x80FFFFFF)
 val GradientDarkGray = Color(0xC0222222)
 val GradientBlack = Color(0xF0000000)
+
+val Star = Color(0xFFE0E000)

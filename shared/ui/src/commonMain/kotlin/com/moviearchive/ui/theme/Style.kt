@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.sp
 
 val HomeTextTitleStyle =
     TextStyle(
-        fontSize = 30.sp,
+        fontSize = 20.sp,
         color = Color.Black,
         fontFamily = FontFamily.Serif,
         fontWeight = FontWeight.Bold
@@ -17,15 +17,25 @@ val HomeTextTitleStyle =
 
 val MovieItemTitleStyle =
     TextStyle(
-        fontSize = 20.sp,
+        fontSize = 14.sp,
         color = Color.White,
         fontFamily = FontFamily.Serif,
         fontWeight = FontWeight.Bold
     )
 
+val MovieDetailTitleStyle =
+    TextStyle(
+        fontSize = 14.sp,
+        color = Color.Black,
+        fontFamily = FontFamily.Serif,
+        fontWeight = FontWeight.Bold,
+        textAlign = TextAlign.Justify,
+        lineHeight = 20.sp
+    )
+
 val MovieDetailTextStyle =
     TextStyle(
-        fontSize = 16.sp,
+        fontSize = 12.sp,
         color = Color.Black,
         fontFamily = FontFamily.Serif,
         fontWeight = FontWeight.Medium,
@@ -35,7 +45,7 @@ val MovieDetailTextStyle =
 
 val MovieDetailItemTextStyle =
     TextStyle(
-        fontSize = 16.sp,
+        fontSize = 12.sp,
         color = Color.Black,
         fontFamily = FontFamily.Serif,
         textAlign = TextAlign.Start,

@@ -79,6 +79,9 @@ To build and run the Movie Archive app locally, follow these steps:
 
 Clone the repository: git clone https://github.com/Adnan9011/movie_archive_kmp.git
 
+- To access the API, you need an API key. Please visit https://rapidapi.com/DataCrawler/api/imdb188
+  to obtain your own key by signing in through RapidAPI.
+
 Contributions to Movie Archive are welcome! If you'd like to contribute, please follow these
 guidelines:
 

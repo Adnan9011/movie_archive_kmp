@@ -23,8 +23,12 @@ class CelebrityRepositoryImpl(
             Result.Success(list.map { it.toData() })
         }
 
-    override suspend fun favorite(movie: CelebrityDataModel) {
-        dao.insert(movie.toTable())
+    override suspend fun favorite(celebrity: CelebrityDataModel) {
+        dao.insert(celebrity.toTable())
+    }
+
+    override suspend fun delete(celebrityId: String) {
+        dao.delete(celebrityId)
     }
 
     override fun popularCelebrities(): Flow<Result<PagingDataModel<CelebrityDataModel>, Error>> =

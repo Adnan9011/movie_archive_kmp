@@ -8,7 +8,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface CelebrityRepository {
 
-    suspend fun favorite(movie: CelebrityDataModel)
+    suspend fun favorite(celebrity: CelebrityDataModel)
+
+    suspend fun delete(celebrityId: String)
 
     fun getFavorites(): Flow<Result<List<CelebrityDataModel>, Error>>
     fun popularCelebrities(): Flow<Result<PagingDataModel<CelebrityDataModel>, Error>>

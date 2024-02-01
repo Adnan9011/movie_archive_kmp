@@ -19,6 +19,7 @@ import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.feature.presentation.home.HomeViewModel
 import com.moviearchive.feature.presentation.home.items.ShowCelebrities
 import com.moviearchive.feature.presentation.home.items.ShowShimmerCelebrities
+import com.moviearchive.feature.util.HOME_TOP_POPULAR
 import com.moviearchive.feature.util.ShimmerMovieItemCount
 import com.moviearchive.ui.theme.HighPadding
 import com.moviearchive.ui.theme.HomeTextTitleStyle
@@ -41,7 +42,7 @@ fun CelebritiesWidget(
             .wrapContentHeight()
     ) {
         Text(
-            text = "Top Popular Celebrities",
+            text = HOME_TOP_POPULAR,
             style = HomeTextTitleStyle,
             modifier = Modifier.padding(
                 top = NormalPadding,

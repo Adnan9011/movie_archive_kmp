@@ -10,9 +10,14 @@ class CelebrityViewModel(
     private val updatePopularCelebritiesUseCase: UpdatePopularCelebritiesUseCase
 ) : ViewModel() {
 
-    fun updateCelebrity(celebrityUiModel: CelebrityUiModel) {
+    fun updateCelebrity(isFavorite: Boolean, celebrity: CelebrityUiModel) {
         viewModelScope.launch {
-            updatePopularCelebritiesUseCase(celebrityUiModel.toDomain())
+            updatePopularCelebritiesUseCase(
+                UpdatePopularCelebritiesUseCase.UpdateModel(
+                    isFavorite = isFavorite,
+                    celebrity = celebrity.toDomain()
+                )
+            )
         }
     }
 }

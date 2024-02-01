@@ -1,6 +1,7 @@
 package com.moviearchive.navigation
 
 import com.moviearchive.feature.model.CelebrityUiModel
+import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_FAVORITE_ARG
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_ID_ARG
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_IMAGE_ARG
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_NAME_ARG
@@ -20,6 +21,7 @@ object DestinationsArgs {
     const val MOVIE_CELEBRITY_ID_ARG = "id"
     const val MOVIE_CELEBRITY_NAME_ARG = "name"
     const val MOVIE_CELEBRITY_IMAGE_ARG = "image"
+    const val MOVIE_CELEBRITY_FAVORITE_ARG = "favorite"
 }
 
 object Destinations {
@@ -46,7 +48,8 @@ class NavigationActions(private val navController: Navigator) {
             CELEBRITY_SCREEN +
                 "?$MOVIE_CELEBRITY_ID_ARG=${celebrity.id}" +
                 "&$MOVIE_CELEBRITY_NAME_ARG=${celebrity.name}" +
-                "&$MOVIE_CELEBRITY_IMAGE_ARG=${celebrity.image}"
+                "&$MOVIE_CELEBRITY_IMAGE_ARG=${celebrity.image}" +
+                "&$MOVIE_CELEBRITY_FAVORITE_ARG=${celebrity.isFavorite}"
         )
     }
 }

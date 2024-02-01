@@ -11,6 +11,7 @@ import com.moviearchive.feature.presentation.celebrity.CelebrityScreen
 import com.moviearchive.feature.presentation.detail.DetailScreen
 import com.moviearchive.feature.presentation.home.HomeScreen
 import com.moviearchive.navigation.Destinations
+import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_FAVORITE_ARG
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_ID_ARG
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_IMAGE_ARG
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_NAME_ARG
@@ -76,7 +77,11 @@ fun App(appContext: AppContext) {
                     val celebrity = CelebrityUiModel(
                         id = backStackEntry.query(name = MOVIE_CELEBRITY_ID_ARG, "") ?: "",
                         name = backStackEntry.query(name = MOVIE_CELEBRITY_NAME_ARG, "") ?: "",
-                        image = backStackEntry.query(name = MOVIE_CELEBRITY_IMAGE_ARG, "") ?: ""
+                        image = backStackEntry.query(name = MOVIE_CELEBRITY_IMAGE_ARG, "") ?: "",
+                        isFavorite = backStackEntry.query(
+                            name = MOVIE_CELEBRITY_FAVORITE_ARG,
+                            false
+                        ) ?: false
                     )
                     CelebrityScreen(
                         celebrity = celebrity,

@@ -1,0 +1,22 @@
+CREATE TABLE MovieTable (
+    id TEXT PRIMARY KEY NOT NULL,
+    title TEXT NOT NULL,
+    image TEXT NOT NULL,
+    year INTEGER NOT NULL,
+    stars TEXT NOT NULL
+);
+
+insert:
+INSERT OR IGNORE INTO MovieTable VALUES (:id,:title,:image,:year,:stars);
+
+deleteAll:
+DELETE FROM MovieTable;
+
+delete:
+DELETE FROM MovieTable WHERE id=:id;
+
+getAll:
+SELECT * FROM MovieTable;
+
+getMovie:
+SELECT * FROM MovieTable WHERE id=:id;

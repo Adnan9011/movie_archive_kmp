@@ -5,28 +5,28 @@ import app.cash.sqldelight.coroutines.mapToList
 import app.cash.sqldelight.coroutines.mapToOne
 import com.moviearchive.DatabaseSource
 import com.moviearchive.data.source.db.util.Constant.THROW_QUERY_INSERT_MOVIE_EXCEPTION
-import com.moviearchive.sqldelight.WeekTopTable
+import com.moviearchive.sqldelight.MovieTable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
 
-class WeekTopDaoImpl constructor(
+class MovieDaoImpl constructor(
     db: DatabaseSource
-) : WeekTopDao {
+) : MovieDao {
 
-    private val query = db.weektop_tableQueries
-    override fun getAll(): Flow<List<WeekTopTable>> =
+    private val query = db.movie_tableQueries
+    override fun getAll(): Flow<List<MovieTable>> =
         query.getAll()
             .asFlow()
             .mapToList(Dispatchers.IO)
 
 
-    override fun get(movieId: String): Flow<WeekTopTable> =
+    override fun get(movieId: String): Flow<MovieTable> =
         query.getMovie(movieId)
             .asFlow()
             .mapToOne(Dispatchers.IO)
 
-    override suspend fun insert(movie: WeekTopTable) {
+    override suspend fun insert(movie: MovieTable) {
         query.transaction {
             afterRollback { throw Exception(THROW_QUERY_INSERT_MOVIE_EXCEPTION) }
 
@@ -34,8 +34,8 @@ class WeekTopDaoImpl constructor(
                 id = movie.id,
                 title = movie.title,
                 image = movie.image,
-                rate = movie.rate,
-                duration = movie.duration
+                year = movie.year,
+                stars = movie.stars
             )
         }
     }

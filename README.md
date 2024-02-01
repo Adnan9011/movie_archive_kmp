@@ -9,7 +9,7 @@ modules for improved scalability and maintainability, and incorporates various l
 Koin, Flow, Coroutine, Ktor, Kotlin Serialization, SQLDelight, and Version Catalog for seamless
 development and maintenance.
 
-https://github.com/Adnan9011/movie_archive_kmp/assets/7091803/d91b9e97-26c3-45b3-8864-025334c5628c
+https://github.com/Adnan9011/movie_archive_kmp/assets/7091803/b20380c7-bba9-476a-9dac-9df3bf25232f
 
 ## Give a Star!
 

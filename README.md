@@ -24,8 +24,9 @@ appreciate it if you could give it a star. Thank you!
 | Implement Remote and Database | ✔️ Implemented   |
 | Home                          | ✔️ Implemented   |
 | Detail                        | ✔️ Implemented   |
-| Implement IMDB api            | ⚠️ Working on it |
-| Refactor Home                 | ⚠️ Working on it |
+| Implement IMDB api            | ✔️ Implemented   |
+| Refactor Home                 | ✔️ Implemented   |
+| Refactor Celebrity            | ✔️ Implemented   |
 | Refactor Detail               | ⚠️ Working on it |
 | Search Movie                  | ⚠️ Working on it |
 | Unit Test                     | ⚠️ Working on it |

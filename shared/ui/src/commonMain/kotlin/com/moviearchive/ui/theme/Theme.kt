@@ -2,6 +2,12 @@ package com.moviearchive.ui.theme
 
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
+import com.moviearchive.ui.theme.Colors.Pink40
+import com.moviearchive.ui.theme.Colors.Pink80
+import com.moviearchive.ui.theme.Colors.Purple40
+import com.moviearchive.ui.theme.Colors.Purple80
+import com.moviearchive.ui.theme.Colors.PurpleGrey40
+import com.moviearchive.ui.theme.Colors.PurpleGrey80
 
 public val DarkColorScheme = darkColorScheme(
     primary = Purple80,

@@ -61,3 +61,13 @@ val EmptyTextStyle =
         textAlign = TextAlign.Justify,
         lineHeight = 20.sp
     )
+
+val SplashTextStyle =
+    TextStyle(
+        fontSize = 18.sp,
+        color = Colors.Purple80,
+        fontFamily = FontFamily.Serif,
+        fontWeight = FontWeight.Medium,
+        textAlign = TextAlign.Justify,
+        lineHeight = 20.sp
+    )

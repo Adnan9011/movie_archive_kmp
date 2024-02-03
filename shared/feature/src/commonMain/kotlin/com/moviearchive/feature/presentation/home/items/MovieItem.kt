@@ -25,10 +25,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import com.moviearchive.feature.model.WeekTopUiModel
+import com.moviearchive.ui.theme.Colors.GradientBlack
+import com.moviearchive.ui.theme.Colors.GradientDarkGray
+import com.moviearchive.ui.theme.Colors.GradientWhite
+import com.moviearchive.ui.theme.Colors.Star
 import com.moviearchive.ui.theme.DetailIcon
-import com.moviearchive.ui.theme.GradientBlack
-import com.moviearchive.ui.theme.GradientDarkGray
-import com.moviearchive.ui.theme.GradientWhite
 import com.moviearchive.ui.theme.MovieDetailItemTextStyle
 import com.moviearchive.ui.theme.MovieItemHeight
 import com.moviearchive.ui.theme.MovieItemRound
@@ -37,7 +38,6 @@ import com.moviearchive.ui.theme.MovieItemWidth
 import com.moviearchive.ui.theme.NormalPadding
 import com.moviearchive.ui.theme.SmallEvelation
 import com.moviearchive.ui.theme.SmallPadding
-import com.moviearchive.ui.theme.Star
 import com.moviearchive.ui.theme.TinyPadding
 import com.moviearchive.ui.widget.AsyncImagePainter
 import com.moviearchive.ui.widget.VerticalGradiant

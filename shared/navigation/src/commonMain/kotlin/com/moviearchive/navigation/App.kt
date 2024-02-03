@@ -10,6 +10,7 @@ import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.feature.presentation.celebrity.CelebrityScreen
 import com.moviearchive.feature.presentation.detail.DetailScreen
 import com.moviearchive.feature.presentation.home.HomeScreen
+import com.moviearchive.feature.presentation.splash.SplashScreen
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_FAVORITE_ARG
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_ID_ARG
 import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_IMAGE_ARG
@@ -22,6 +23,7 @@ import moe.tlaster.precompose.navigation.path
 import moe.tlaster.precompose.navigation.query
 import moe.tlaster.precompose.navigation.rememberNavigator
 import org.koin.compose.KoinApplication
+import org.koin.compose.koinInject
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
@@ -44,12 +46,23 @@ fun App(appContext: AppContext) {
             val navigationActions = NavigationActions(navigator)
             NavHost(
                 navigator = navigator,
-                initialRoute = Destinations.HOME_ROUT,
+                initialRoute = Destinations.SPLASH_ROUT,
             ) {
+                scene(
+                    route = Destinations.SPLASH_ROUT
+                ) {
+                    SplashScreen(
+                        viewModel = koinInject(),
+                        onSplashEnd = {
+                            navigationActions.navigateToHome()
+                        }
+                    )
+                }
                 scene(
                     route = Destinations.HOME_ROUT
                 ) {
                     HomeScreen(
+                        viewModel = koinInject(),
                         onShowDetail = { movieId ->
                             navigationActions.navigateToDetail(movieId)
                         },
@@ -63,6 +76,7 @@ fun App(appContext: AppContext) {
                 ) { backStackEntry ->
                     backStackEntry.path<String>(MOVIE_DETAIL_ID_ARG)?.let { movieId ->
                         DetailScreen(
+                            viewModel = koinInject(),
                             movieId = movieId,
                             onBackClicked = {
                                 navigationActions.navigateToHome()
@@ -83,6 +97,7 @@ fun App(appContext: AppContext) {
                         ) ?: false
                     )
                     CelebrityScreen(
+                        viewModel = koinInject(),
                         celebrity = celebrity,
                         onBackClicked = {
                             navigationActions.navigateToHome()

@@ -8,9 +8,13 @@ import com.moviearchive.navigation.DestinationsArgs.MOVIE_CELEBRITY_NAME_ARG
 import com.moviearchive.navigation.Screens.CELEBRITY_SCREEN
 import com.moviearchive.navigation.Screens.DETAIL_SCREEN
 import com.moviearchive.navigation.Screens.HOME_SCREEN
+import com.moviearchive.navigation.Screens.SPLASH_SCREEN
+import moe.tlaster.precompose.navigation.NavOptions
 import moe.tlaster.precompose.navigation.Navigator
+import moe.tlaster.precompose.navigation.PopUpTo
 
 private object Screens {
+    const val SPLASH_SCREEN = "/splash"
     const val HOME_SCREEN = "/home"
     const val DETAIL_SCREEN = "/detail"
     const val CELEBRITY_SCREEN = "/celebrity"
@@ -25,6 +29,7 @@ object DestinationsArgs {
 }
 
 object Destinations {
+    const val SPLASH_ROUT = SPLASH_SCREEN
     const val HOME_ROUT = HOME_SCREEN
     const val DETAIL_ROUT =
         "$DETAIL_SCREEN/{id:[a-zA-Z0-9]+}"
@@ -33,7 +38,7 @@ object Destinations {
 
 class NavigationActions(private val navController: Navigator) {
     fun navigateToHome() {
-        navController.navigate(HOME_SCREEN)
+        navController.navigate(HOME_SCREEN, NavOptions(popUpTo = PopUpTo.First(inclusive = true)))
     }
 
     fun navigateToDetail(movieId: String) {

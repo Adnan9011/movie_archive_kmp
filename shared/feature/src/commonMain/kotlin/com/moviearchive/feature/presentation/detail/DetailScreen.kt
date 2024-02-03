@@ -7,11 +7,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.moviearchive.feature.presentation.detail.widget.DetailWidget
 import com.moviearchive.ui.widget.AppBarDetail
-import org.koin.compose.koinInject
 
 @Composable
 fun DetailScreen(
-    viewModel: DetailViewModel = koinInject(),
+    viewModel: DetailViewModel,
     movieId: String,
     onBackClicked: () -> Unit
 ) {

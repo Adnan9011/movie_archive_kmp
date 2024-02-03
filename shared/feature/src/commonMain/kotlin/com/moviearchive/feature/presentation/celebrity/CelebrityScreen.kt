@@ -5,12 +5,11 @@ import androidx.compose.runtime.Composable
 import com.moviearchive.feature.model.CelebrityUiModel
 import com.moviearchive.feature.presentation.celebrity.widget.CelebrityWidget
 import com.moviearchive.ui.widget.AppBarDetail
-import org.koin.compose.koinInject
 
 @Composable
 fun CelebrityScreen(
     celebrity: CelebrityUiModel,
-    viewModel: CelebrityViewModel = koinInject(),
+    viewModel: CelebrityViewModel,
     onBackClicked: () -> Unit
 ) {
     Scaffold(

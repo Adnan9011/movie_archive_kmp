@@ -17,12 +17,11 @@ import com.moviearchive.feature.presentation.home.widget.TopBannerWidget
 import com.moviearchive.feature.presentation.home.widget.TopTenWidget
 import com.moviearchive.feature.util.HOME_MOVIE_TITLE
 import com.moviearchive.ui.widget.AppBarHome
-import org.koin.compose.koinInject
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = koinInject(),
+    viewModel: HomeViewModel,
     onShowDetail: (movieId: String) -> Unit,
     onShowCelebrity: (celebrity: CelebrityUiModel) -> Unit
 ) {

@@ -24,22 +24,36 @@ kotlin {
                     implementation(data)
                     implementation(domain)
                     implementation(feature)
+                    implementation(core)
                 }
-
                 libs.precompose.apply {
                     implementation(core)
                     implementation(viewmodel)
                     implementation(koin)
                 }
-
+                libs.coil.apply {
+                    implementation(core)
+                    implementation(compose)
+                    implementation(network)
+                }
                 libs.koin.apply {
                     implementation(core)
+                    implementation(compose)
                 }
                 compose.apply {
                     implementation(runtime)
                     implementation(foundation)
                 }
+                libs.ktor.apply {
+                    implementation(core)
+                }
+                implementation(compose.foundation)
                 implementation(libs.touchlab)
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation(libs.koin.android)
             }
         }
     }

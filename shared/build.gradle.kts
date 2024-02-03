@@ -19,7 +19,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.shared.di)
+            implementation(projects.shared.navigation)
             implementation(projects.shared.core)
             implementation(compose.foundation)
         }

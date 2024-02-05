@@ -55,6 +55,16 @@ val MovieDetailItemTextStyle =
 val EmptyTextStyle =
     TextStyle(
         fontSize = 16.sp,
+        color = Color.Black,
+        fontFamily = FontFamily.Serif,
+        fontWeight = FontWeight.Medium,
+        textAlign = TextAlign.Justify,
+        lineHeight = 20.sp
+    )
+
+val TryAgainTextStyle =
+    TextStyle(
+        fontSize = 16.sp,
         color = Color.White,
         fontFamily = FontFamily.Serif,
         fontWeight = FontWeight.Medium,

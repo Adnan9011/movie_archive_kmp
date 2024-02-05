@@ -1,13 +1,13 @@
 [versions]
-agp = "8.0.2"
-org-jetbrains-kotlin-android = "1.9.20"
+agp = "8.2.2"
+org-jetbrains-kotlin-android = "1.9.21"
 
-compose = "1.5.10"
+compose = "1.5.11"
 activity-compose = "1.8.2"
 coil = "3.0.0-alpha01"
 
 kotlinx-immutable-collection = "0.3.5"
-kotlinx-serialization = "1.6.1"
+kotlinx-serialization = "1.6.2"
 
 ktor = "2.3.7"
 koin = "3.5.3"
@@ -52,6 +52,7 @@ ktor-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = 
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin-compose" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+touchlab = { group = "co.touchlab", name = "stately-common", version.ref = "touchlab" }
 
 sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-native = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }

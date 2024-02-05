@@ -16,9 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.moviearchive.feature.util.TRY_AGAIN
 import com.moviearchive.ui.theme.EmptyMovieSize
-import com.moviearchive.ui.theme.EmptyTextStyle
 import com.moviearchive.ui.theme.MovieItemHeight
 import com.moviearchive.ui.theme.NormalPadding
+import com.moviearchive.ui.theme.TryAgainTextStyle
 import com.moviearchive.ui.widget.TryAgainButton
 
 @Composable
@@ -48,7 +48,7 @@ fun ErrorWidget(
         TryAgainButton(
             onClick = { onTryAgain() },
             text = TRY_AGAIN,
-            textStyle = EmptyTextStyle
+            textStyle = TryAgainTextStyle
         )
     }
 }

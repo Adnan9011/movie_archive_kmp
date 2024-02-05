@@ -48,6 +48,7 @@ kotlin {
                     implementation(core)
                 }
                 implementation(compose.foundation)
+                implementation(libs.touchlab)
             }
         }
         androidMain {

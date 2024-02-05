@@ -61,7 +61,11 @@ fun CelebritiesWidget(
             }
 
             is Result.Failure -> {
-                ErrorWidget()
+                ErrorWidget(
+                    onTryAgain = {
+                        viewModel.getCelebrities()
+                    }
+                )
                 ShowSnackbar(
                     snackbarHostState = snackbarHost,
                     scope = rememberCoroutineScope(),

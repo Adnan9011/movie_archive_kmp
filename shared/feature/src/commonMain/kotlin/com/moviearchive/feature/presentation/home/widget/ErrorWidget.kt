@@ -10,7 +10,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,9 +19,12 @@ import com.moviearchive.ui.theme.EmptyMovieSize
 import com.moviearchive.ui.theme.EmptyTextStyle
 import com.moviearchive.ui.theme.MovieItemHeight
 import com.moviearchive.ui.theme.NormalPadding
+import com.moviearchive.ui.widget.TryAgainButton
 
 @Composable
-fun ErrorWidget() {
+fun ErrorWidget(
+    onTryAgain: () -> Unit
+) {
     Column(
         modifier = Modifier
             .padding(NormalPadding)
@@ -43,9 +45,10 @@ fun ErrorWidget() {
                 .height(NormalPadding),
             color = Color.Transparent
         )
-        Text(
+        TryAgainButton(
+            onClick = { onTryAgain() },
             text = TRY_AGAIN,
-            style = EmptyTextStyle
+            textStyle = EmptyTextStyle
         )
     }
 }

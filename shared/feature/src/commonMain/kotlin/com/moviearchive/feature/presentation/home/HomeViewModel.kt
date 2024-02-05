@@ -37,7 +37,7 @@ class HomeViewModel(
         MutableStateFlow<Result<PersistentList<CelebrityUiModel>, Error>>(Result.Loading)
     val uiPopularCelebrities = _uiPopularCelebrities.asStateFlow()
 
-    private fun getWeekTopTen() {
+    fun getWeekTopTen() {
         viewModelScope.launch {
             getWeekTopTenMovies()
                 .flowOn(Dispatchers.IO)
@@ -85,7 +85,7 @@ class HomeViewModel(
         }
     }
 
-    private fun getCelebrities() {
+    fun getCelebrities() {
         viewModelScope.launch {
             getPopularCelebrities()
                 .flowOn(Dispatchers.IO)

@@ -61,7 +61,11 @@ fun TopTenWidget(
             }
 
             is Result.Failure -> {
-                ErrorWidget()
+                ErrorWidget(
+                    onTryAgain = {
+                        viewModel.getWeekTopTen()
+                    }
+                )
                 ShowSnackbar(
                     snackbarHostState = snackbarHost,
                     scope = rememberCoroutineScope(),

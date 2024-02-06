@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 @Composable
 fun AppBarHome(
     title: String,
+    isLiked: Boolean,
     onFavoriteClicked: (isFavorite: Boolean) -> Unit
 ) {
     TopAppBar(
@@ -28,6 +29,7 @@ fun AppBarHome(
         ),
         actions = {
             LikeAction(
+                isLiked = isLiked,
                 onFavoriteClicked = onFavoriteClicked
             )
         }

@@ -7,5 +7,8 @@ import com.moviearchive.ui.widget.LikeAction
 @Preview
 @Composable
 private fun LikeActionPreview() {
-    LikeAction(onFavoriteClicked = {})
+    LikeAction(
+        isLiked = true,
+        onFavoriteClicked = {}
+    )
 }

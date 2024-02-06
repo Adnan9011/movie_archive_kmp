@@ -9,6 +9,7 @@ import com.moviearchive.ui.widget.AppBarHome
 @Composable
 private fun AppBarHomePreview() = AppBarHome(
     title = "Home Title",
+    isLiked = true,
     onFavoriteClicked = {}
 )
 

@@ -3,6 +3,8 @@ package com.moviearchive.data.di
 import com.moviearchive.core.platform.AppContext
 import com.moviearchive.data.repository.CelebrityRepository
 import com.moviearchive.data.repository.CelebrityRepositoryImpl
+import com.moviearchive.data.repository.HomeRepository
+import com.moviearchive.data.repository.HomeRepositoryImpl
 import com.moviearchive.data.repository.MovieRepository
 import com.moviearchive.data.repository.MovieRepositoryImpl
 import com.moviearchive.data.repository.WeekTopRepository
@@ -44,11 +46,12 @@ expect fun platformModule(appContext: AppContext): Module
 
 @OptIn(ExperimentalSerializationApi::class)
 val dataModule = module {
+    single<HomeRepository> { HomeRepositoryImpl(dataStore = get()) }
     single<MovieRepository> { MovieRepositoryImpl(api = get(), dao = get()) }
     single<WeekTopRepository> { WeekTopRepositoryImpl(api = get()) }
     single<CelebrityRepository> { CelebrityRepositoryImpl(api = get(), dao = get()) }
 
-    single { DataStoreSource() }
+    single { DataStoreSource(dataStore = get()) }
 
     single {
         HttpClient() {

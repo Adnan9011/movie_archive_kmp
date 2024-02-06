@@ -8,7 +8,7 @@ import org.koin.dsl.module
 
 val featureModule = module {
     viewModelDefinition { SplashViewModel() }
-    viewModelDefinition { HomeViewModel(get(), get(), get(), get()) }
+    viewModelDefinition { HomeViewModel(get(), get(), get(), get(), get(), get()) }
     viewModelDefinition { DetailViewModel(get(), get()) }
     viewModelDefinition { CelebrityViewModel(get()) }
 }

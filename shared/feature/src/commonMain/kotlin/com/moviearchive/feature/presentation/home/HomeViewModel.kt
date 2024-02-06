@@ -6,6 +6,8 @@ import com.moviearchive.core.map
 import com.moviearchive.domain.model.toWeekTop
 import com.moviearchive.domain.usecase.celebrity.GetFavoriteCelebritiesUseCase
 import com.moviearchive.domain.usecase.celebrity.GetPopularCelebritiesUseCase
+import com.moviearchive.domain.usecase.home.GetFavoriteStatusUseCase
+import com.moviearchive.domain.usecase.home.UpdateFavoriteStatusUseCase
 import com.moviearchive.domain.usecase.movie.GetFavoriteMoviesUseCase
 import com.moviearchive.domain.usecase.weekTopTen.GetWeekTopTenMoviesUseCase
 import com.moviearchive.feature.model.CelebrityUiModel
@@ -16,6 +18,7 @@ import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
@@ -27,7 +30,19 @@ class HomeViewModel(
     private val getPopularCelebrities: GetPopularCelebritiesUseCase,
     private val getFavoriteCelebrities: GetFavoriteCelebritiesUseCase,
     private val getFavoriteMovies: GetFavoriteMoviesUseCase,
+    private val getFavoriteStatus: GetFavoriteStatusUseCase,
+    private val updateFavoriteStatus: UpdateFavoriteStatusUseCase,
 ) : ViewModel() {
+
+    private var job = Job()
+        get() {
+            if (field.isCancelled) field = Job()
+            return field
+        }
+
+    private val _uiFavoriteStatus =
+        MutableStateFlow<Boolean>(false)
+    val uiFavoriteStatus = _uiFavoriteStatus.asStateFlow()
 
     private val _uiWeekTopTen =
         MutableStateFlow<Result<PersistentList<WeekTopUiModel>, Error>>(Result.Loading)
@@ -38,7 +53,7 @@ class HomeViewModel(
     val uiPopularCelebrities = _uiPopularCelebrities.asStateFlow()
 
     fun getWeekTopTen() {
-        viewModelScope.launch {
+        viewModelScope.launch(job) {
             getWeekTopTenMovies()
                 .flowOn(Dispatchers.IO)
                 .catch { throwable ->
@@ -62,7 +77,7 @@ class HomeViewModel(
     }
 
     private fun getFavoriteWeekTopTen() {
-        viewModelScope.launch {
+        viewModelScope.launch(job) {
             getFavoriteMovies()
                 .flowOn(Dispatchers.IO)
                 .catch { throwable ->
@@ -86,7 +101,7 @@ class HomeViewModel(
     }
 
     fun getCelebrities() {
-        viewModelScope.launch {
+        viewModelScope.launch(job) {
             getPopularCelebrities()
                 .flowOn(Dispatchers.IO)
                 .catch { throwable ->
@@ -108,7 +123,7 @@ class HomeViewModel(
     }
 
     private fun getFavoriteCelebrity() {
-        viewModelScope.launch {
+        viewModelScope.launch(job) {
             getFavoriteCelebrities()
                 .flowOn(Dispatchers.IO)
                 .catch { throwable ->
@@ -129,13 +144,46 @@ class HomeViewModel(
         }
     }
 
+    fun getFavoriteStatus() {
+
+        viewModelScope.launch {
+            getFavoriteStatus.invoke()
+                .flowOn(Dispatchers.IO)
+                .catch {
+                    _uiFavoriteStatus.value = false
+                    getData()
+                }
+                .collect { isFavoriteEnable ->
+                    _uiFavoriteStatus.value = isFavoriteEnable
+                    getData()
+                }
+        }
+    }
+
+    fun updateFavoriteStatus(isFavorite: Boolean) {
+
+        viewModelScope.launch {
+            updateFavoriteStatus.invoke(isFavorite = isFavorite)
+        }
+    }
+
     fun getData() {
+        cancelJobs()
+        if (uiFavoriteStatus.value) getFavoriteData()
+        else getAllData()
+    }
+
+    private fun getAllData() {
         getWeekTopTen()
         getCelebrities()
     }
 
-    fun getFavorites() {
+    private fun getFavoriteData() {
         getFavoriteWeekTopTen()
         getFavoriteCelebrity()
+    }
+
+    private fun cancelJobs() {
+        job.cancel()
     }
 }

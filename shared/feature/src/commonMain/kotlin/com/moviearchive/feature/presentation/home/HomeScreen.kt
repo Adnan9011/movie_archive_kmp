@@ -9,6 +9,8 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.moviearchive.feature.model.CelebrityUiModel
@@ -27,16 +29,16 @@ fun HomeScreen(
 ) {
 
     val snackbarHostState = remember { SnackbarHostState() }
+    val favoriteStatus by viewModel.uiFavoriteStatus.collectAsState()
+
 
     Scaffold(
         topBar = {
             AppBarHome(
                 title = HOME_MOVIE_TITLE,
+                isLiked = favoriteStatus,
                 onFavoriteClicked = { isFavorite ->
-                    if (isFavorite)
-                        viewModel.getFavorites()
-                    else
-                        viewModel.getData()
+                    viewModel.updateFavoriteStatus(isFavorite = isFavorite)
                 }
             )
         },
@@ -66,6 +68,7 @@ fun HomeContent(
         key1 = true,
     ) {
         viewModel.getData()
+        viewModel.getFavoriteStatus()
     }
 
     Column(

@@ -1,4 +1,4 @@
-package com.moviearchive.domain.usecase.movie//package com.moviearchive.domain.usecase.weekTopTen
+package com.moviearchive.domain.usecase.movie
 
 import com.moviearchive.data.repository.MovieRepository
 import com.moviearchive.domain.model.MovieDomainModel

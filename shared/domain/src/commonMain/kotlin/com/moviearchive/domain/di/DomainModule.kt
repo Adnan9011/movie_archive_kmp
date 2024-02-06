@@ -9,6 +9,8 @@ import com.moviearchive.domain.model.WeekTopDomainModel
 import com.moviearchive.domain.usecase.celebrity.GetFavoriteCelebritiesUseCase
 import com.moviearchive.domain.usecase.celebrity.GetPopularCelebritiesUseCase
 import com.moviearchive.domain.usecase.celebrity.UpdatePopularCelebritiesUseCase
+import com.moviearchive.domain.usecase.home.GetFavoriteStatusUseCase
+import com.moviearchive.domain.usecase.home.UpdateFavoriteStatusUseCase
 import com.moviearchive.domain.usecase.movie.GetFavoriteMoviesUseCase
 import com.moviearchive.domain.usecase.movie.GetMovieUseCase
 import com.moviearchive.domain.usecase.movie.GetSearchMovieUseCase
@@ -22,6 +24,9 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val domainModule = module {
+    singleOf(::GetFavoriteStatusUseCase) { bind<UseCaseNoInput<Flow<Boolean>>>() }
+    singleOf(::UpdateFavoriteStatusUseCase) { bind<UseCase<Boolean, Unit>>() }
+
     singleOf(::GetMovieUseCase) { bind<UseCase<String, Flow<Result<MovieDomainModel, Error>>>>() }
     singleOf(::GetSearchMovieUseCase) { bind<UseCase<String, Flow<Result<List<MovieDomainModel>, Error>>>>() }
 

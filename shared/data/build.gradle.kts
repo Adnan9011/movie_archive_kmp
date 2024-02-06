@@ -37,10 +37,11 @@ kotlin {
 
             implementation(libs.sqldelight.coroutines)
 
+            implementation(libs.datastore)
+
             implementation(libs.napier)
         }
-        commonTest.dependencies {
-        }
+
         androidMain.dependencies {
             implementation(libs.ktor.okhttp)
 

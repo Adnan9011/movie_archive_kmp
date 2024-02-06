@@ -70,7 +70,7 @@ Utilizes Kotlin Serialization for parsing JSON data.
 
 Implements SQLDelight persistence library for local database management.
 
-### DataStroe
+### DataStore
 
 DataStore is a new and improved data storage solution aimed at replacing SharedPreferences.
 

@@ -22,6 +22,7 @@ import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.path
 import moe.tlaster.precompose.navigation.query
 import moe.tlaster.precompose.navigation.rememberNavigator
+import moe.tlaster.precompose.navigation.BrowserNavigationController
 import org.koin.compose.KoinApplication
 import org.koin.compose.koinInject
 
@@ -42,7 +43,7 @@ fun App(appContext: AppContext) {
         }
 
         PreComposeApp {
-            val navigator = rememberNavigator()
+            val navigator = rememberNavigator(controller = BrowserNavigationController())
             val navigationActions = NavigationActions(navigator)
             NavHost(
                 navigator = navigator,

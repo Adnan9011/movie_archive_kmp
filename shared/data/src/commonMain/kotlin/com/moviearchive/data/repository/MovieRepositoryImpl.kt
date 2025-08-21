@@ -22,14 +22,22 @@ class MovieRepositoryImpl(
                 it.data[0].toData()
             }
         }.catch { throwable ->
-            Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
+            emit(
+                Result.Failure(
+                    Error(message = throwable.message ?: "", throwable = throwable)
+                )
+            )
         }
 
     override fun search(title: String): Flow<Result<List<MovieDataModel>, Error>> =
         api.search(title).map { result ->
             result.map { it.data.map { it.toData() } }
         }.catch { throwable ->
-            Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
+            emit(
+                Result.Failure(
+                    Error(message = throwable.message ?: "", throwable = throwable)
+                )
+            )
         }
 
     override suspend fun favorite(movie: MovieDataModel) {
@@ -44,7 +52,11 @@ class MovieRepositoryImpl(
         dao.get(movieId).map {
             Result.Success(it.toData())
         }.catch { throwable ->
-            Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
+            emit(
+                Result.Failure(
+                    Error(message = throwable.message ?: "", throwable = throwable)
+                )
+            )
         }
 
 
@@ -52,6 +64,10 @@ class MovieRepositoryImpl(
         dao.getAll().map { list ->
             Result.Success(list.map { it.toData() })
         }.catch { throwable ->
-            Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
+            emit(
+                Result.Failure(
+                    Error(message = throwable.message ?: "", throwable = throwable)
+                )
+            )
         }
 }

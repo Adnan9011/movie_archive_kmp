@@ -35,6 +35,10 @@ class CelebrityRepositoryImpl(
         api.popularCelebrities().map { result ->
             result.map { it.data!!.toData() }
         }.catch { throwable ->
-            Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
+            emit(
+                Result.Failure(
+                    Error(message = throwable.message ?: "", throwable = throwable)
+                )
+            )
         }
 }

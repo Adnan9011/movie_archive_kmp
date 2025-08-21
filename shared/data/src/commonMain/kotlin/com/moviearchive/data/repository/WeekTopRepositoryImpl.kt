@@ -17,6 +17,10 @@ class WeekTopRepositoryImpl(
         api.weekTopTen().map { result ->
             result.map { it.data.map { it.toData() } }
         }.catch { throwable ->
-            Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
+            emit(
+                Result.Failure(
+                    Error(message = throwable.message ?: "", throwable = throwable)
+                )
+            )
         }
 }

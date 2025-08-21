@@ -2,7 +2,7 @@ package com.moviearchive.data.source.db.dao
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
-import app.cash.sqldelight.coroutines.mapToOne
+import app.cash.sqldelight.coroutines.mapToOneOrNull
 import com.moviearchive.DatabaseSource
 import com.moviearchive.data.source.db.util.Constant.THROW_QUERY_INSERT_MOVIE_EXCEPTION
 import com.moviearchive.sqldelight.MovieTable
@@ -21,10 +21,10 @@ class MovieDaoImpl constructor(
             .mapToList(Dispatchers.IO)
 
 
-    override fun get(movieId: String): Flow<MovieTable> =
+    override fun get(movieId: String): Flow<MovieTable?> =
         query.getMovie(movieId)
             .asFlow()
-            .mapToOne(Dispatchers.IO)
+            .mapToOneOrNull(Dispatchers.IO)
 
     override suspend fun insert(movie: MovieTable) {
         query.transaction {

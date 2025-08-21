@@ -41,8 +41,9 @@ class MovieRepositoryImpl(
     }
 
     override fun getFavorite(movieId: String): Flow<Result<MovieDataModel, Error>> =
-        dao.get(movieId).map {
-            Result.Success(it.toData())
+        dao.get(movieId).map { table ->
+            table?.let { Result.Success(it.toData()) }
+                ?: Result.Failure(Error(message = "Movie not found"))
         }.catch { throwable ->
             Result.Failure(Error(message = throwable.message ?: "", throwable = throwable))
         }

@@ -6,6 +6,10 @@ plugins {
 
 kotlin {
     androidTarget()
+    js(IR) {
+        browser()
+        binaries.executable()
+    }
     listOf(
         iosX64(),
         iosArm64(),
@@ -22,6 +26,14 @@ kotlin {
             implementation(projects.shared.navigation)
             implementation(projects.shared.core)
             implementation(compose.foundation)
+        }
+
+        val jsMain by getting {
+            dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.html.core)
+            }
         }
 
         commonTest.dependencies {

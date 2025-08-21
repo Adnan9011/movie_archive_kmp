@@ -5,6 +5,9 @@ plugins {
 
 kotlin {
     androidTarget()
+    js(IR) {
+        browser()
+    }
     listOf(
         iosX64(),
         iosArm64(),

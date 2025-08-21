@@ -7,6 +7,9 @@ plugins {
 
 kotlin {
     androidTarget()
+    js(IR) {
+        browser()
+    }
     listOf(
         iosX64(),
         iosArm64(),
@@ -53,6 +56,9 @@ kotlin {
             implementation(libs.ktor.darwin)
 
             implementation(libs.sqldelight.native)
+        }
+        jsMain.dependencies {
+            // JS specific dependencies can be added here
         }
     }
 }

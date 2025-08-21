@@ -32,7 +32,7 @@ import com.moviearchive.ui.theme.NormalPadding
 import com.moviearchive.ui.theme.SmallEvelation
 import com.moviearchive.ui.theme.SmallPadding
 import com.moviearchive.ui.widget.AsyncImagePainter
-import com.moviearchive.ui.widget.VerticalGradiant
+import com.moviearchive.ui.widget.VerticalGradient
 
 @Composable
 fun CelebrityItem(
@@ -65,7 +65,7 @@ fun CelebrityItem(
                     contentScale = ContentScale.Crop,
                     contentDescription = null
                 )
-                VerticalGradiant(
+                VerticalGradient(
                     modifier = Modifier
                         .width(MovieItemWidth)
                         .align(Alignment.BottomStart),

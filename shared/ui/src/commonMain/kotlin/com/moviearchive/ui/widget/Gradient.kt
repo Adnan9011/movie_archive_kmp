@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun VerticalGradiant(
+fun VerticalGradient(
     modifier: Modifier,
     listColors: List<Color>,
     content: @Composable BoxScope.() -> Unit

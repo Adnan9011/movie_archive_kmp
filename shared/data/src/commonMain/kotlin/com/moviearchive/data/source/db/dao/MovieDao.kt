@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface MovieDao {
     fun getAll(): Flow<List<MovieTable>>
 
-    fun get(movieId: String): Flow<MovieTable>
+    fun get(movieId: String): Flow<MovieTable?>
 
     suspend fun insert(movie: MovieTable)
 
